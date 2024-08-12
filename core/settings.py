@@ -33,6 +33,9 @@ INSTALLED_APPS = [
     'health',
     'management',
 
+    # Third apps
+    'rolepermissions'
+
 ]
 
 MIDDLEWARE = [
