@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import BasicInformation, Address
+from .models import InstitutionalInformation, Address
 
-admin.site.register(BasicInformation)
+admin.site.register(InstitutionalInformation)
 admin.site.register(Address)
 
  
