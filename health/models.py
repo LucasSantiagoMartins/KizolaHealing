@@ -36,3 +36,6 @@ class Phone(models.Model):
 class ContactInformation(models.Model):
     email = models.EmailField(max_lenth=150)
     website = models.URLField()
+
+    def __str__(self):
+        return self.phone_numbers
