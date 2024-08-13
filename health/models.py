@@ -9,7 +9,7 @@ class BasicInformation(models.Model):
 
     def __str__(self):
         return self.institution_name
-        
+
 class Address(models.Model):
     street_address = models.CharField(max_length=120)
     neighborhood = models.CharField(max_length=40)
@@ -18,3 +18,6 @@ class Address(models.Model):
 
     class Meta:
         verbose_name_plural = 'Addresses'
+
+    def __str__(self):
+        return self.street_address
