@@ -1,5 +1,9 @@
 from django.db import models
-from .model_choices import INSTITUTION_TYPE, PHONE_TYPES
+from .model_choices import ( 
+    INSTITUTION_TYPE, 
+    PHONE_TYPES, 
+    SERVICE_TYPE_CHOICES
+)
 
 
 class InstitutionalInformation(models.Model):
@@ -27,7 +31,7 @@ class Address(models.Model):
 class Phone(models.Model):
     phone_type = models.CharField(max_length=3, choices=PHONE_TYPES)
     number = models.CharField(max_length=9)
-    contact_information = models.ForeignKey('ContactInformation', related_name='phone_numbers')
+    contact_information = models.ForeignKey('ContactInformation', related_name='phone_numbers', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.number
@@ -46,3 +50,10 @@ class AdministrativeInformation(models.Model):
     responsabile_person_nif = models.CharField(max_length=14)
     responsabile_person_email = models.EmailField(max_length=150)
     responsabile_person_phone = models.CharField(max_length=13)
+
+
+class ServiceType(models.Model):
+    service_name = models.CharField(max_length=3, choices=SERVICE_TYPE_CHOICES)
+    description = models.TextField(blank=True, null=True)
+
+   
