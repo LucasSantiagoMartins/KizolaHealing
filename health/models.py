@@ -1,5 +1,5 @@
 from django.db import models
-from .models_choices import INSTITUTION_TYPE
+from .model_choices import INSTITUTION_TYPE, PHONE_TYPES
 
 
 class BasicInformation(models.Model):
@@ -9,6 +9,7 @@ class BasicInformation(models.Model):
 
     def __str__(self):
         return self.institution_name
+
 
 class Address(models.Model):
     street_address = models.CharField(max_length=120)
@@ -21,3 +22,9 @@ class Address(models.Model):
 
     def __str__(self):
         return self.street_address
+
+
+class Phone(models.Model):
+    phone_type = models.CharField(max_legth=3, choices=PHONE_TYPES)
+    number = models.CharField(max_length=9)
+    
