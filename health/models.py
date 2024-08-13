@@ -27,4 +27,6 @@ class Address(models.Model):
 class Phone(models.Model):
     phone_type = models.CharField(max_legth=3, choices=PHONE_TYPES)
     number = models.CharField(max_length=9)
-    
+
+    def __str__(self):
+        return self.number
