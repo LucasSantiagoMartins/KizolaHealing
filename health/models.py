@@ -39,3 +39,10 @@ class ContactInformation(models.Model):
 
     def __str__(self):
         return self.phone_numbers
+
+
+class AdministrativeInformation(models.Model):
+    responsabile_person_name = models.CharField(max_length=50)
+    responsabile_person_nif = models.CharField(max_length=14)
+    responsabile_person_email = models.EmailField(max_length=150)
+    responsabile_person_phone = models.CharField(max_length=13)
