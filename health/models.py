@@ -7,7 +7,9 @@ class BasicInformation(models.Model):
     nif = models.CharField(max_length=14)
     institution_type = models.CharField(max_length=3, choices=INSTITUTION_TYPE)
 
-
+    def __str__(self):
+        return self.institution_name
+        
 class Address(models.Model):
     street_address = models.CharField(max_length=120)
     neighborhood = models.CharField(max_length=40)
