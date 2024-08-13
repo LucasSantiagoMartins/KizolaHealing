@@ -67,3 +67,36 @@ SERVICE_TYPE_CHOICES = (
     ('SSM', 'Serviços de Saúde Mental'),
     ('SVO', 'Serviços de Odontologia'),
 )
+
+
+POLICY_TITLE_CHOICES = (
+    ('', 'Política de Privacidade '),
+    ('', 'Política de Retenção de Dados'),
+    ('', 'Direitos e Responsabilidades do Paciente '),
+    ('', 'Política de Faturamento e Pagamento '),
+    ('', 'Política de Visitantes '),
+    ('', 'Política de Medicamentos'),
+    ('', 'Política de Controle de Infecções'),
+    ('', 'Política de Segurança e Emergências '),
+    ('', 'Política de Saúde e Segurança Ocupacional '),
+    ('', 'Política de Consentimento Informado '),
+    ('', 'Política de Requisitos de Documentação Médica'),
+    ('', 'Política de Proteção de Dados Pessoais '),
+    ('', 'Política de Uso de Equipamentos Médicos '),
+    ('', 'Política de Atendimento e Cuidados ao Paciente'),
+    ('', 'Política de Descarte de Resíduos '),
+    ('', 'Política de Acessibilidade '),
+    ('', 'Política de Treinamento e Desenvolvimento'),
+    ('', 'Política de Gestão de Riscos '),
+    ('', 'Política de Conflitos de Interesse '),
+    ('', 'Política de Transparência'),
+)
+
+
+
+ 
+
+
+
+
+
