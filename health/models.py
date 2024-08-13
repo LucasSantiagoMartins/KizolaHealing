@@ -38,7 +38,7 @@ class Phone(models.Model):
 
 
 class ContactInformation(models.Model):
-    email = models.EmailField(max_lenth=150)
+    email = models.EmailField(max_length=150)
     website = models.URLField()
 
     def __str__(self):
