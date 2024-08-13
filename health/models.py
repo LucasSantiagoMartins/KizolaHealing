@@ -25,7 +25,7 @@ class Address(models.Model):
 
 
 class Phone(models.Model):
-    phone_type = models.CharField(max_legth=3, choices=PHONE_TYPES)
+    phone_type = models.CharField(max_length=3, choices=PHONE_TYPES)
     number = models.CharField(max_length=9)
 
     def __str__(self):
@@ -35,4 +35,5 @@ class Phone(models.Model):
 class ContactInformation(models.Model):
     email = models.EmailField(max_lenth=150)
     website = models.URLField()
+
     
