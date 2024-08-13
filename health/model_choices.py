@@ -54,3 +54,16 @@ PHONE_TYPES = (
     ('TRH', 'Telefone de Departamento de Recursos Humanos'),
     ('TST', 'Telefone de Suporte Técnico'),
 )
+
+
+SERVICE_TYPE_CHOICES = (
+    ('CTM', 'Consultas Médicas'),
+    ('SDG', 'Serviços de Diagnóstico'),
+    ('SCG', 'Serviços Cirúgicos'),
+    ('SUE', 'Serviços de Urgência e Emergência'),
+    ('SVI', 'Serviços de Internação'),
+    ('SVR', 'Serviços de Reabilitação'),
+    ('SSP', 'Serviços de Saúde Preventiva'),
+    ('SSM', 'Serviços de Saúde Mental'),
+    ('SVO', 'Serviços de Odontologia'),
+)
