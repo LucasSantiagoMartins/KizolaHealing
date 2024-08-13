@@ -40,3 +40,17 @@ INSTITUTION_TYPE = (
     ('CVT', 'Clínica Veterinária'),
     ('CPL', 'Clínica Popular'),
 )
+
+PHONE_TYPES = (
+    ('TFP', 'Telefone Principal'),
+    ('TFE', 'Telefone de Emergência'),
+    ('TFR', 'Telefone de Recepção'),
+    ('TAP', 'Telefone de Atendimento ao Paciente'),
+    ('TFC', 'Telefone de Consultório'),
+    ('TUI', 'Telefone de Unidade de Internação'),
+    ('TFL', 'Telefone de Laboratório'),
+    ('TFF', 'Telefone de Farmácia'),
+    ('TFA', 'Telefone de Administração'),
+    ('TRH', 'Telefone de Departamento de Recursos Humanos'),
+    ('TST', 'Telefone de Suporte Técnico'),
+)
