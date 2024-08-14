@@ -98,10 +98,17 @@ LICENSE_TITLE_CHOICES = (
     ('LEM', 'licenças para especialidades médicas'),
 )
 
+CERTIFICATION_TITLE_CHOICES = (
+    ('', 'certificações em controle de infecção'),
+    ('', 'certificados profissionais para funcionarios'),
+    ('', 'acreditação hospitalar'),
+    ('', 'certificações específicas de qualidade'),
+    ('', 'certificações de qualidade e boas práticas'),
+    
+)
+
 STATUS_CHOICES = (
     ('ATV', 'Activa'),
     ('EXD', 'Expirada'),
     ('SPC', 'Suspença'),
 )
-
-
