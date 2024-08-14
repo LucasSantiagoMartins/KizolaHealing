@@ -106,6 +106,7 @@ class LicenseDocument(models.Model):
     def __str__(self):
         return f"{self.license.license_title}"
 
+
 class Certification(models.Model):
     certification_title = models.CharField(max_length=3, choices=CERTIFICATION_TITLE_CHOICES)
     certification_number = models.CharField(max_length=50, unique=True)
@@ -120,3 +121,13 @@ class Certification(models.Model):
 
     def __str__(self):
         return f"{self.certification_title} - {self.certification_number}"
+
+
+class CertificationDocument(models.Model):
+    related_certification = models.ForeignKey(Certification, related_name='documents', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='health/documents/certification_documents/')
+    description = models.TextField(null=True, blank=True)
+
+
+    def __str__(self):
+        return f"{self.certification.certification_title}"
