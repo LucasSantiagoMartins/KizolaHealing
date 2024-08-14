@@ -99,11 +99,11 @@ LICENSE_TITLE_CHOICES = (
 )
 
 CERTIFICATION_TITLE_CHOICES = (
-    ('', 'certificações em controle de infecção'),
-    ('', 'certificados profissionais para funcionarios'),
-    ('', 'acreditação hospitalar'),
-    ('', 'certificações específicas de qualidade'),
-    ('', 'certificações de qualidade e boas práticas'),
+    ('CCI', 'certificações em controle de infecção'),
+    ('CPF', 'certificados profissionais para funcionarios'),
+    ('CAH', 'acreditação hospitalar'),
+    ('CEQ', 'certificações específicas de qualidade'),
+    ('CQP', 'certificações de qualidade e boas práticas'),
     
 )
 
