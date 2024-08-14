@@ -67,3 +67,13 @@ class PolicyInformation(models.Model):
 
     def __str__(self):
         return dict(POLICY_TITLE_CHOICES).get(self.title, self.title)
+
+
+class OperationInformation(models.Model):
+    opening_hours = models.TimeField()
+    closing_hours = models.TimeField()
+    services_offered = models.ManyToManyField(ServiceType, related_name='institutions')
+
+
+    def __str__(self):
+        return f"Open from {self.opening_hours} until {self.closing_hours}"
