@@ -95,3 +95,12 @@ class License(models.Model):
     def __str__(self):
         return f"{self.license_title} - {self.license_number}"
 
+
+class LicenseDocument(models.Model):
+    related_license = models.ForeignKey('License', related_name='documents', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='health/documents/license_documents/')
+    description = models.TextField(null=True, blank=True)
+
+
+    def __str__(self):
+        return f"{self.license.license_title}"
