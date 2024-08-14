@@ -55,7 +55,6 @@ PHONE_TYPES = (
     ('TST', 'Telefone de Suporte Técnico'),
 )
 
-
 SERVICE_TYPE_CHOICES = (
     ('CTM', 'Consultas Médicas'),
     ('SDG', 'Serviços de Diagnóstico'),
@@ -67,7 +66,6 @@ SERVICE_TYPE_CHOICES = (
     ('SSM', 'Serviços de Saúde Mental'),
     ('SVO', 'Serviços de Odontologia'),
 )
-
 
 POLICY_TITLE_CHOICES = (
     ('PPD', 'Política de Privacidade '),
@@ -92,8 +90,6 @@ POLICY_TITLE_CHOICES = (
     ('PTC', 'Política de Transparência'),
 )
 
-
-
 LICENSE_TITLE_CHOICES = (
     ('LCF', 'licença de funcionamento'),
     ('RER', 'registro na entidade reguladora'),
@@ -102,9 +98,10 @@ LICENSE_TITLE_CHOICES = (
     ('LEM', 'licenças para especialidades médicas'),
 )
 
-
-
- 
-
+LICENSE_STATUS_CHOICES = (
+    ('ATV', 'Activa'),
+    ('EXD', 'Expirada'),
+    ('SPC', 'Suspença'),
+)
 
 
