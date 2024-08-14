@@ -9,6 +9,7 @@ from .model_choices import (
     CERTIFICATION_TITLE_CHOICES
 )
 
+#TODO Consider move some models to management app
 
 class InstitutionalInformation(models.Model):
     institution_name = models.CharField(max_length=150)
