@@ -98,7 +98,7 @@ class License(models.Model):
 
 
 class LicenseDocument(models.Model):
-    related_license = models.ForeignKey('License', related_name='documents', on_delete=models.CASCADE)
+    related_license = models.ForeignKey(License, related_name='documents', on_delete=models.CASCADE)
     file = models.FileField(upload_to='health/documents/license_documents/')
     description = models.TextField(null=True, blank=True)
 
