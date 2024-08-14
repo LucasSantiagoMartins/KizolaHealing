@@ -94,9 +94,17 @@ POLICY_TITLE_CHOICES = (
 
 
 
+LICENSE_TITLE_CHOICES = (
+    ('LCF', 'licença de funcionamento'),
+    ('RER', 'registro na entidade reguladora'),
+    ('LCS', 'licença sanitária'),
+    ('ALM', 'alavará de licença municipal'),
+    ('LEM', 'licenças para especialidades médicas'),
+)
+
+
+
  
-
-
 
 
 
