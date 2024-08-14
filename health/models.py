@@ -5,7 +5,8 @@ from .model_choices import (
     SERVICE_TYPE_CHOICES,
     POLICY_TITLE_CHOICES,
     LICENSE_TITLE_CHOICES,
-    STATUS_CHOICES
+    STATUS_CHOICES,
+    CERTIFICATION_TITLE_CHOICES
 )
 
 
@@ -104,3 +105,18 @@ class LicenseDocument(models.Model):
 
     def __str__(self):
         return f"{self.license.license_title}"
+
+class Certification(models.Model):
+    certification_title = models.CharField(max_length=3, choices=CERTIFICATION_TITLE_CHOICES)
+    certification_number = models.CharField(max_length=50, unique=True)
+    certification_status = models.CharField(max_length=3, choices=STATUS_CHOICES)
+    issue_date = models.DateField()
+    expiration_date = models.DateField(null=True, blank=True)
+    issuing_authority = models.CharField(max_length=100)
+    renewal_required = models.BooleanField(default=True)
+    renewal_date = models.DateField(null=True, blank=True)
+    scope = models.TextField(null=True, blank=True)
+
+
+    def __str__(self):
+        return f"{self.certification_title} - {self.certification_number}"
