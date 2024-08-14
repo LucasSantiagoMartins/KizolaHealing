@@ -5,7 +5,7 @@ from .model_choices import (
     SERVICE_TYPE_CHOICES,
     POLICY_TITLE_CHOICES,
     LICENSE_TITLE_CHOICES,
-    LICENSE_STATUS_CHOICES
+    STATUS_CHOICES
 )
 
 
@@ -83,7 +83,7 @@ class OperationInformation(models.Model):
 class License(models.Model):
     license_title = models.CharField(max_length=3, choices=LICENSE_TITLE_CHOICES)
     license_number = models.CharField(max_length=50, unique=True)
-    license_status = models.CharField(max_length=3, choices=LICENSE_STATUS_CHOICES)
+    license_status = models.CharField(max_length=3, choices=STATUS_CHOICES)
     issue_date = models.DateField()
     expiration_date = models.DateField(null=True, blank=True)
     issuing_authority = models.CharField(max_length=100)
