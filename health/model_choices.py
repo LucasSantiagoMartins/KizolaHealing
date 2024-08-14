@@ -98,7 +98,7 @@ LICENSE_TITLE_CHOICES = (
     ('LEM', 'licenças para especialidades médicas'),
 )
 
-LICENSE_STATUS_CHOICES = (
+STATUS_CHOICES = (
     ('ATV', 'Activa'),
     ('EXD', 'Expirada'),
     ('SPC', 'Suspença'),
