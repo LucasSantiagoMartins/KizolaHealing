@@ -2,7 +2,8 @@ from django.db import models
 from .model_choices import ( 
     INSTITUTION_TYPE, 
     PHONE_TYPES, 
-    SERVICE_TYPE_CHOICES
+    SERVICE_TYPE_CHOICES,
+    POLICY_TITLE_CHOICES
 )
 
 
@@ -56,4 +57,13 @@ class ServiceType(models.Model):
     service_name = models.CharField(max_length=3, choices=SERVICE_TYPE_CHOICES)
     description = models.TextField(blank=True, null=True)
 
-   
+
+class PolicyInformation(models.Model):
+    title = models.CharField(max_length=3, choices=POLICY_TITLE_CHOICES)
+    description = models.TextField()
+    implementation_date = models.DateField()
+    last_review_date = models.DateField(null=True, blank=True)
+    document = models.FileField(upload_to='health/documents/policy_documents/', null=True, blank=True)
+
+    def __str__(self):
+        return dict(POLICY_TITLE_CHOICES).get(self.title, self.title)
