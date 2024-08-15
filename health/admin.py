@@ -10,7 +10,8 @@ from .models import (
     CertificationDocument,
     LicenseDocument,
     ContactInformation,
-    OperationInformation
+    OperationInformation,
+    PolicyInformation
 )
 
 admin.site.register(InstitutionalInformation)
@@ -18,6 +19,7 @@ admin.site.register(AdministrativeInformation)
 admin.site.register(CertificationDocument)
 admin.site.register(OperationInformation)
 admin.site.register(ContactInformation)
+admin.site.register(PolicyInformation)
 admin.siter.register(LicenseDocument)
 admin.site.register(Certification)
 admin.site.register(Institution)
