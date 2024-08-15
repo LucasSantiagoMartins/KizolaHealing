@@ -1,19 +1,20 @@
 from django.contrib import admin
 from .models import (
-    InstitutionalInformation, 
-    Address,
-    Institution,
-    Phone,
     AdministrativeInformation,
-    Certification,
-    License,
+    InstitutionalInformation, 
     CertificationDocument,
-    LicenseDocument,
-    ContactInformation,
     OperationInformation,
+    ContactInformation,
     PolicyInformation,
-    ServiceType
+    LicenseDocument,
+    Certification,
+    Institution,
+    ServiceType,
+    License,
+    Address,
+    Phone
 )
+
 
 admin.site.register(InstitutionalInformation)
 admin.site.register(AdministrativeInformation)
