@@ -8,12 +8,14 @@ from .models import (
     Certification,
     License,
     CertificationDocument,
-    LicenseDocument
+    LicenseDocument,
+    ContactInformation
 )
 
 admin.site.register(InstitutionalInformation)
 admin.site.register(AdministrativeInformation)
 admin.site.register(CertificationDocument)
+admin.site.register(ContactInformation)
 admin.siter.register(LicenseDocument)
 admin.site.register(Certification)
 admin.site.register(Institution)
