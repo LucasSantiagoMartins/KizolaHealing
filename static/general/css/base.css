@@ -1,0 +1,38 @@
+:root{
+     
+    --main-color: #00CCBE;
+    --dark-color: #093f3e;
+    --contrast-color: #c6fff688;
+
+}
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif!important;
+
+}
+.bg-color-dark{
+
+    background-color: var(--main-color);
+
+}
+
+.p-bold{
+
+    font-weight: bold;
+
+}
+.bg-main{
+    background-color: #00CCBE;
+}
+
+.color-dark{
+    color: var(--dark-color);
+}
+
+.icon-main{
+    color: var(--main-color);
+}
+
+
+a{
+    text-decoration: none;
+}
