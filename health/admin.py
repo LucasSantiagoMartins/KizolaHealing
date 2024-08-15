@@ -16,8 +16,8 @@ from .models import (
 )
 
 
-admin.site.register(InstitutionalInformation)
 admin.site.register(AdministrativeInformation)
+admin.site.register(InstitutionalInformation)
 admin.site.register(CertificationDocument)
 admin.site.register(OperationInformation)
 admin.site.register(ContactInformation)
