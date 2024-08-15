@@ -5,10 +5,7 @@
     --contrast-color: #c6fff688;
 
 }
-*{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif!important;
 
-}
 .bg-color-dark{
 
     background-color: var(--main-color);
