@@ -5,7 +5,8 @@ from .models import (
     Institution,
     Phone,
     AdministrativeInformation,
-    Certification
+    Certification,
+    License   
 )
 
 admin.site.register(InstitutionalInformation)
@@ -13,4 +14,5 @@ admin.site.register(AdministrativeInformation)
 admin.site.register(Certification)
 admin.site.register(Institution)
 admin.site.register(Address)
+admin.site.register(License)
 admin.site.register(Phone)
