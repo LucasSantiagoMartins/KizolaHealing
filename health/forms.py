@@ -60,3 +60,13 @@ class CertificationDocumentForm(forms.ModelForm):
             'file': forms.FileInput(attrs={'class': 'form-control mb-3'}),
             'description': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
+
+
+class OperationInformationForm(forms.ModelForm):
+    class Meta:
+        model = OperationInformation
+        fields = ['opening_hours', 'closing_hours']
+        widgets = {
+            'opening_hours': forms.TimeInput(attrs={'class': 'form-control mb-3'}),
+            'closing_hours': forms.TimeInput(attrs={'class': 'form-control mb-3'}),
+        }
