@@ -94,3 +94,13 @@ class PolicyInformationForm(forms.ModelForm):
             'document': forms.FileInput(attrs={'class': 'form-control mb-3'})
         }
 
+
+class LicenseDocumentForm(forms.ModelForm):
+    class Meta:
+        model = LicenseDocument
+        fields = ['file', 'description']
+        widgets = {
+            'file': forms.FileInput(attrs={'class': 'form-control mb-3'}),
+            'description': forms.TextInput(attrs={'class': 'form-control mb-3'})
+        }
+
