@@ -1,10 +1,14 @@
-:root{
-     
-    --main-color: #00CCBE;
-    --dark-color: #093f3e;
-    --contrast-color: #c6fff688;
-
+:root 
+{
+    --main-dark: rgb(1,11,20);
+    --secondary-dark: rgb(20, 28, 36);
+    --main-green: rgb(82, 172, 130);
+    --main-yellow: #f2c94c;
+    --main-orange: rgb(222, 77, 6);
+    
+    
 }
+
 
 .bg-color-dark{
 
@@ -25,7 +29,7 @@
     color: var(--dark-color);
 }
 
-.icon-main{
+.color-main{
     color: var(--main-color);
 }
 
