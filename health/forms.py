@@ -38,3 +38,15 @@ class AddressForm(forms.ModelForm):
             'postal_code': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
        
+
+class AdministrativeInformationForm(forms.ModelForm):
+    class Meta:
+        model = AdministrativeInformation
+        fields = '__all__'
+        widgets = {
+            'responsabile_person_name': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsabile_person_nif': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsabile_person_email': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsabile_person_phone': forms.TextInput(attrs={'class': 'form-control mb-3'})
+        }
+
