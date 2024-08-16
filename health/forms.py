@@ -119,4 +119,22 @@ class CertificationForm(forms.ModelForm):
             'renewal_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
             'scope': forms.TextInput(attrs={'class': 'form-control mb-3'})  
         }
- 
+        
+
+
+class LicenseForm(forms.ModelForm):
+    class Meta:
+        model = License
+        fields = '__all__'
+        widgets = {
+            'license_title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'license_number': forms.NumberInput(attrs={'class': 'form-control mb-3'}),
+            'license_status': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'issue_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'expiration_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'renewal_required': forms.CheckboxInput(attrs={'class': 'form-control mb-3'}),
+            'renewal_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'scope': forms.TextInput(attrs={'class': 'form-control mb-3'})
+        }
+
