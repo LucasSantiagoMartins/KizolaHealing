@@ -138,3 +138,16 @@ class LicenseForm(forms.ModelForm):
             'scope': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
 
+
+
+class PhoneForm(forms.ModelForm):
+    class Meta:
+        model = Phone
+        fields = ['phone_type', 'number']
+        widgets = {
+            'phone_type': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'number': forms.NumberInput(attrs={'class': 'form-control mb-3'})
+        }
+
+
+
