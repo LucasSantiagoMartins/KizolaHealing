@@ -70,3 +70,14 @@ class OperationInformationForm(forms.ModelForm):
             'opening_hours': forms.TimeInput(attrs={'class': 'form-control mb-3'}),
             'closing_hours': forms.TimeInput(attrs={'class': 'form-control mb-3'}),
         }
+
+
+class ContactInformationForm(forms.ModelForm):
+    class Meta:
+        model = ContactInformation
+        fields = '__all__'
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control mb-3'}),
+            'website': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+        }
+
