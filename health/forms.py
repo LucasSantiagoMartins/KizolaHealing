@@ -104,3 +104,19 @@ class LicenseDocumentForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
 
+
+class CertificationForm(forms.ModelForm):
+    class Meta:
+        model = Certification
+        fields = '__all__'
+        widgets = {
+            'certification_title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'certification_number': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'certification_status': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'expiration_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'renewal_required': forms.CheckboxInput(attrs={'class': 'form-control mb-3'}),
+            'renewal_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'scope': forms.TextInput(attrs={'class': 'form-control mb-3'})  
+        }
+ 
