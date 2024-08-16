@@ -50,3 +50,13 @@ class AdministrativeInformationForm(forms.ModelForm):
             'responsabile_person_phone': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
 
+
+
+class CertificationDocumentForm(forms.ModelForm):
+    class Meta:
+        model = CertificationDocument
+        fields = ['file', 'description']
+        widgets = {
+            'file': forms.FileInput(attrs={'class': 'form-control mb-3'}),
+            'description': forms.TextInput(attrs={'class': 'form-control mb-3'})
+        }
