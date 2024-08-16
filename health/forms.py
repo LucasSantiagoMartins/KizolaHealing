@@ -81,3 +81,16 @@ class ContactInformationForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control mb-3'}),
         }
 
+
+class PolicyInformationForm(forms.ModelForm):
+    class Meta:
+        model = PolicyInformation
+        fields = '__all__'
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'description': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'implementation_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'last_review_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'document': forms.FileInput(attrs={'class': 'form-control mb-3'})
+        }
+
