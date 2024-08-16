@@ -23,7 +23,7 @@ class InstitutionalInformationForm(forms.ModelForm):
             'institution_name': forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'nif': forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'institution_type': forms.Select(attrs={'class': 'form-control mb-3'}),
-            'founding_date': forms.TextInput(attrs={'class': 'form-control mb-3'})
+            'founding_date': forms.DateInput(attrs={'class': 'form-control mb-3'})
         }
 
 
