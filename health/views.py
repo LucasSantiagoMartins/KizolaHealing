@@ -3,7 +3,6 @@ from .forms import (
     AdministrativeInformationForm,
     InstitutionalInformationForm,
     CertificationDocumentForm,
-    OperationInformationForm,
     ContactInformationForm,
     PolicyInformationForm,
     LicenseDocumentForm,
@@ -23,7 +22,6 @@ def integrate_institution_view(request):
         context['administrative_information_form'] = AdministrativeInformationForm
         context['institutional_information_form'] = InstitutionalInformationForm
         context['certification_document_form'] = CertificationDocumentForm
-        context['operation_information_form'] = OperationInformationForm
         context['contact_information_form'] = ContactInformationForm
         context['policy_information_form'] = PolicyInformationForm
         context['license_document_form'] = LicenseDocumentForm
