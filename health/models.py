@@ -159,4 +159,4 @@ class OperatingShift(models.Model):
         return f"Das {self.begin} às {self.end}."
 
     def __str__(self):
-        return self.description or None
+        return self.shift_type
