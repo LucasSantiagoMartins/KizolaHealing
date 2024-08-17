@@ -112,3 +112,27 @@ STATUS_CHOICES = (
     ('EXD', 'Expirada'),
     ('SPC', 'Suspença'),
 )
+
+OPERATING_HOURS_CHOICES = (
+    ('HRC', 'Horário Comercial'),
+    ('HRE', 'Horário Estendido'),
+    ('HRN', 'Horário Noturno'),
+    ('24H', '24 Horas'),
+    ('HMP', 'Meio Período'),
+    ('HDA', 'Dias Alternados'),
+    ('HRP', 'Horário de Ponto'),
+    ('HAE', 'Atendimento de Emergência'),
+    ('HFE', 'Atendimento Fora do Expediente'),
+    ('HCE', 'Horário para Consultas Específicas'),
+    ('HRF', 'Horário Flexível'),
+    ('HAA', 'Atendimento por Agendamento'),
+    ('HRR', 'Horário Reduzido'),
+    ('HRT', 'Horário Temporário'),
+    ('HPN', 'Horário de Plantão'),
+    ('HRV', 'Horário Rotativo'),
+    ('HPE', 'Horário Especial para Pacientes Específicos'),
+    ('HET', 'Horário Exclusivo de Telemedicina'),
+    ('HCA', 'Horário de Consultas Ambulatoriais'),
+    ('HCG', 'Horário para Consultas gerais'),
+    ('HEC', 'Horário para Consultas especializadas'),
+)
