@@ -64,10 +64,10 @@ class ContactInformation(models.Model):
 
 
 class AdministrativeInformation(models.Model):
-    responsabile_person_name = models.CharField(max_length=50)
-    responsabile_person_nif = models.CharField(max_length=14)
-    responsabile_person_email = models.EmailField(max_length=150)
-    responsabile_person_phone = models.CharField(max_length=13)
+    responsible_person_name = models.CharField(max_length=50)
+    responsible_person_nif = models.CharField(max_length=14)
+    responsible_person_email = models.EmailField(max_length=150)
+    responsible_person_phone = models.CharField(max_length=13)
 
 
 class ServiceType(models.Model):
