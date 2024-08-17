@@ -6,7 +6,9 @@ from .model_choices import (
     POLICY_TITLE_CHOICES,
     LICENSE_TITLE_CHOICES,
     STATUS_CHOICES,
-    CERTIFICATION_TITLE_CHOICES
+    CERTIFICATION_TITLE_CHOICES,
+    SHIFT_TYPE_CHOICES,
+    HOURS_CHOICES
 )
 
 class Institution(models.Model):
@@ -145,3 +147,15 @@ class CertificationDocument(models.Model):
 
     def __str__(self):
         return f"{self.certification.certification_title}"
+
+class OperatingShift(models.Model):
+    begin = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    end = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    description = models.TextField(null=True, blank=True)
+
+    @property
+    def duration(self):
+        return f"Das {self.begin} às {self.end}."
+
+    def __str__(self):
+        return self.description or None
