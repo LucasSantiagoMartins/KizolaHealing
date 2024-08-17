@@ -152,7 +152,6 @@ class OperatingShift(models.Model):
     shift_type = models.CharField(max_length=3, choices=SHIFT_TYPE_CHOICES)
     begin = models.CharField(max_length=3, choices=HOURS_CHOICES)
     end = models.CharField(max_length=3, choices=HOURS_CHOICES)
-    description = models.TextField(null=True, blank=True)
 
     @property
     def duration(self):
@@ -160,3 +159,6 @@ class OperatingShift(models.Model):
 
     def __str__(self):
         return self.shift_type
+
+
+
