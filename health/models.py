@@ -149,6 +149,7 @@ class CertificationDocument(models.Model):
         return f"{self.certification.certification_title}"
 
 class OperatingShift(models.Model):
+    shift_type = models.CharField(max_length=3, choices=SHIFT_TYPE_CHOICES)
     begin = models.CharField(max_length=3, choices=HOURS_CHOICES)
     end = models.CharField(max_length=3, choices=HOURS_CHOICES)
     description = models.TextField(null=True, blank=True)
