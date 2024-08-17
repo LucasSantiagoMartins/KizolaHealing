@@ -62,16 +62,6 @@ class CertificationDocumentForm(forms.ModelForm):
         }
 
 
-class OperationInformationForm(forms.ModelForm):
-    class Meta:
-        model = OperationInformation
-        fields = ['opening_hours', 'closing_hours']
-        widgets = {
-            'opening_hours': forms.TimeInput(attrs={'class': 'form-control mb-3'}),
-            'closing_hours': forms.TimeInput(attrs={'class': 'form-control mb-3'}),
-        }
-
-
 class ContactInformationForm(forms.ModelForm):
     class Meta:
         model = ContactInformation
