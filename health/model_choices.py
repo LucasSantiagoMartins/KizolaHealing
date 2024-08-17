@@ -176,3 +176,13 @@ SHIFT_TYPE_CHOICES = (
     ('TFS', 'Turno de Fim de Semana'),
     
 )
+
+WEEK_DAYS_CHOICES = (
+    ('SD', 'Segunda-feira'),
+    ('TÇ', 'Terça-feira'),
+    ('QR', 'Quarta-feira'),
+    ('QT', 'Quinta-feira'),
+    ('ST', 'Sexta-feira'),
+    ('SD', 'Sábado'),
+    ('DG', 'Domingo'),
+)
