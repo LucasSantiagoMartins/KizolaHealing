@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block 'title' %}Integrar instituição{% endblock %}
+{% block 'head' %}<link rel='stylesheet' href='{% static "health/css/integrate_institution.css" %}'>{% endblock %}
+
+
+
+{% block 'content' %}
+
+<div class="container" id="main">
+
+    <aside id="side-info">
+        <img src="{% static 'general/images/logo.png' %}" class="mt-5" id="logo">
+        <h1 class="text-light mt-4 p-bold">KizolaHealing</h1>
+    </aside>
+    
+    <div id="div-form">
+        <div class="row">
+            <div class="mt-5">
+                <form action="">
+                    {% csrf_token %}
+                    <div id="div-form-institutional-information">
+                        {{form.institution_name.label}}
+                        {{form.institution_name}}
+                        {{form.nif.label}}
+                        {{form.nif}}
+                        {{form.institution_type.label}}
+                        {{form.institution_type}}
+                        {{form.founding_date.label}}
+                        {{form.founding_date}}
+                    </div>  
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    
+    <div id="button-card">
+        <button class="btn btn-dark">avançar</button>
+        <button class="btn btn-secondary">voltar</button>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block 'body' %}{% endblock %}
+
+
+ 
