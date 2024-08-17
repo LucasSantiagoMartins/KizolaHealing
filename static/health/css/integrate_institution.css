@@ -1,0 +1,62 @@
+body
+    {
+        background-image: url('../../general/images/background_image.jpg');
+    }
+#logo{
+    width: 100px;
+    border-radius: 8px;
+    padding: 4px;
+}
+#main
+    {
+    
+        background-color: #fff;
+        width: 80%;
+        height: 80vh;
+        border-radius: 8px;
+        margin-bottom: 2%;
+        margin-top: 5%;
+        padding: 0;
+    }
+
+#side-info
+    {
+        background-color: var(--main-green);
+        width: 30%;
+        height: 100%;
+        float: left;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        text-align: center;
+        padding: 0;
+    }
+
+
+#main #div-form  
+    {
+        width: 70%;
+        float: right;
+        height: 90%;
+
+    }
+
+#main #div-form form{padding: 4%;}
+
+
+
+#button-card{
+    padding: 0.5%;
+    float: right;
+    width: 70%;
+    height: 8vh;
+    position: static;
+}
+
+#button-card button{
+    width: 150px;
+    float: right;
+}
+
+#button-card button:first-child{
+    margin-left: 1%;
+}
