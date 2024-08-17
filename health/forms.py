@@ -46,7 +46,7 @@ class AdministrativeInformationForm(forms.ModelForm):
         widgets = {
             'responsible_person_name': forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'responsible_person_nif': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'responsible_person_email': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsible_person_email': forms.EmailInput(attrs={'class': 'form-control mb-3'}),
             'responsible_person_phone': forms.NumberInput(attrs={'class': 'form-control mb-3'})
         }
 
