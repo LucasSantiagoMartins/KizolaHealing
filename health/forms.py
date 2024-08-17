@@ -8,7 +8,6 @@ from .models import (
     PolicyInformation,
     LicenseDocument,
     Certification,
-    Institution,
     License,
     Address,
     Phone
