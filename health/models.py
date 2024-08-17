@@ -91,8 +91,6 @@ class PolicyInformation(models.Model):
 
 
 class OperationInformation(models.Model):
-    opening_hours = models.TimeField()
-    closing_hours = models.TimeField()
     services_offered = models.ManyToManyField(ServiceType, related_name='institutions')
 
 
