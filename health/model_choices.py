@@ -163,3 +163,14 @@ HOURS_CHOICES = (
     ('22h', '22h'),
     ('23h', '23h'),
 )
+
+SHIFT_TYPE_CHOICES = (
+    ('TND', 'Turno Diurno'),
+    ('TNT', 'Turno Tarde'),
+    ('TNN', 'Turno Noturno'),
+    ('TNP', 'Turno de Plantão'),
+    ('T12', 'Turno de 12 Horas'),
+    ('TN8', 'Turno de 8 Horas'),
+    ('TNR', 'Turno Rotativo'),
+    ('TMP', 'Turno de Meio Período'),
+)
