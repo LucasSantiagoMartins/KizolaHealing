@@ -9,7 +9,8 @@ from .model_choices import (
     CERTIFICATION_TITLE_CHOICES,
     SHIFT_TYPE_CHOICES,
     HOURS_CHOICES,
-    WEEK_DAYS_CHOICES
+    WEEK_DAYS_CHOICES,
+    OPERATING_HOURS_CHOICES
 )
 
 class Institution(models.Model):
@@ -172,3 +173,13 @@ class DutyShift(models.Model):
 
     def __str__(self):
         return f"{self.begin_day} à {self.end_day}: {self.operating_shift.duration}"
+
+class OperatingHour(models.Model):
+    operating_hour = models.CharField(max_length=3, choices=OPERATING_HOURS_CHOICES)
+    begin_day = models.CharField(max_length=2, choices=WEEK_DAYS_CHOICES)
+    end_day = models.CharField(max_length=2, choices=WEEK_DAYS_CHOICES)
+    begin_hour = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    end_hour = models.CharField(max_length=3, choices=HOURS_CHOICES)
+
+    def __str__(self):
+        return f"{self.begin_day} à {self.end_day}: {self.begin_hour}-{self.end_hour}"
