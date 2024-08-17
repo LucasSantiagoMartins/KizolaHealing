@@ -8,6 +8,7 @@ from .models import (
     PolicyInformation,
     LicenseDocument,
     Certification,
+    ServiceType,
     License,
     Address,
     Phone
@@ -148,5 +149,13 @@ class PhoneForm(forms.ModelForm):
             'number': forms.NumberInput(attrs={'class': 'form-control mb-3'})
         }
 
+class ServiceTypeForm(forms.ModelForm):
+    class Meta:
+        model = ServiceType
+        fields = '__all__'
+        widgets = {
+            'service_name': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'description': forms.TextInput(attrs={'class': 'form-control mb-3'})
+        }
 
 
