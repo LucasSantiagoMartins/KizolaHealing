@@ -44,10 +44,10 @@ class AdministrativeInformationForm(forms.ModelForm):
         model = AdministrativeInformation
         fields = '__all__'
         widgets = {
-            'responsabile_person_name': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'responsabile_person_nif': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'responsabile_person_email': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'responsabile_person_phone': forms.TextInput(attrs={'class': 'form-control mb-3'})
+            'responsible_person_name': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsible_person_nif': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsible_person_email': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'responsible_person_phone': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
 
 
