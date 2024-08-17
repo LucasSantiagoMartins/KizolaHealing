@@ -173,4 +173,6 @@ SHIFT_TYPE_CHOICES = (
     ('TN8', 'Turno de 8 Horas'),
     ('TNR', 'Turno Rotativo'),
     ('TMP', 'Turno de Meio Período'),
+    ('TFS', 'Turno de Fim de Semana'),
+    
 )
