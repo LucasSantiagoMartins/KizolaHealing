@@ -19,7 +19,7 @@
             <div class="mt-5">
                 <form action="">
                     {% csrf_token %}
-                    
+
                     <div id="div-form-institutional-information">
                         {{institutional_information_form.institution_name.label}}
                         {{institutional_information_form.institution_name}}
@@ -29,6 +29,18 @@
                         {{institutional_information_form.institution_type}}
                         {{institutional_information_form.founding_date.label}}
                         {{institutional_information_form.founding_date}}
+                    </div>  
+
+                    <div id="div-form-administrative-information">
+                        {{administrative_information_form.responsible_person_name.label}}
+                        {{administrative_information_form.responsible_person_name}}
+                        {{administrative_information_form.responsible_person_nif.label}}
+                        {{administrative_information_form.responsible_person_nif}}
+                        {{administrative_information_form.responsible_person_email.label}}
+                        {{administrative_information_form.responsible_person_email}}
+                        {{administrative_information_form.responsible_person_phone.label}}
+                        {{administrative_information_form.responsible_person_phone}}
+                        
                     </div>  
 
                 </form>
