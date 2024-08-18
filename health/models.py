@@ -94,6 +94,7 @@ class PolicyInformation(models.Model):
 class OperationInformation(models.Model):
     services_offered = models.ManyToManyField(ServiceType, related_name='institutions')
     # related_name='operating_shifts' from OperatingShift model
+    # related_name='duty_shifts' from DutyShift model
 
     def __str__(self):
         return f"Open from {self.opening_hours} until {self.closing_hours}"
