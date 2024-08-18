@@ -134,7 +134,7 @@ class Certification(models.Model):
     renewal_required = models.BooleanField(default=True)
     renewal_date = models.DateField(null=True, blank=True)
     scope = models.TextField(null=True, blank=True)
-
+    # related_name='documents' from CertificationDocument model
 
     def __str__(self):
         return f"{self.certification_title} - {self.certification_number}"
