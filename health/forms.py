@@ -3,7 +3,6 @@ from .models import (
     AdministrativeInformation,
     InstitutionalInformation, 
     CertificationDocument,
-    OperationInformation,
     ContactInformation,
     PolicyInformation,
     LicenseDocument,
