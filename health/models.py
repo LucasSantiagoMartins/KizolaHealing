@@ -152,6 +152,7 @@ class OperatingShift(models.Model):
     shift_type = models.CharField(max_length=3, choices=SHIFT_TYPE_CHOICES)
     begin = models.CharField(max_length=3, choices=HOURS_CHOICES)
     end = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    operation_information = models.ForeignKey(OperationInformation, related_name='operating_shifts', on_delete=models.CASCADE)
 
     @property
     def duration(self):
