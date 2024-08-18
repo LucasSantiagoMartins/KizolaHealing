@@ -42,7 +42,30 @@
                         {{administrative_information_form.responsible_person_phone}}
                         
                     </div>  
+                    
+                    <div id="div-form-certification">
+                        <h4>Registar Certificações</h4>
+                        <div class="input-group">
+                            {{certification_form.certification_title}}
+                            {{certification_form.certification_number}}
+                        </div>
+                        <div class="input-group">
+                            {{certification_form.issuing_authority}}
+                            {{certification_form.scope}}
+                        </div>
+                        
+                        {{certification_form.certification_status.label}}
+                        {{certification_form.certification_status}}
+                        {{certification_form.expiration_date.label}}
+                        {{certification_form.expiration_date}}
+                        {{certification_form.renewal_required.label}}
+                        {{certification_form.renewal_required}}
+                        <br>
+                        {{certification_form.renewal_date.label}}
+                        {{certification_form.renewal_date}}
 
+                    </div>
+                    
                 </form>
 
             </div>
