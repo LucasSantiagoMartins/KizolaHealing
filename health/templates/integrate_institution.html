@@ -67,13 +67,39 @@
                         {{certification_form.renewal_date}}
 
                     </div>
-                    
+
                     <div id="div-form-certification-document">
                         <h4>Adicionar documentos das certificações</h4>
                         {{certification_document_form.file.label}}
                         {{certification_document_form.file}}
                         {{certification_document_form.description.label}}
                         {{certification_document_form.description}}
+                    </div>
+
+                    <div id="div-form-license">
+                        <h4>Registrar Licenças</h4>
+                        <div class="input-group">
+                            {{license_form.license_title}}
+                            {{license_form.license_number}}
+                        </div>
+                        <div class="input-group">
+                            {{license_form.issuing_authority}}
+                            {{license_form.scope}}
+                        </div>
+                        
+                        {{license_form.license_status.label}}
+                        {{license_form.license_status}}
+
+                        <label>Expiration date and issue date</label>
+                        <div class="input-group mt-2">
+                            {{license_form.expiration_date}}
+                            {{license_form.issue_date}}
+                        </div>
+                        {{license_form.renewal_required.label}}
+                        {{license_form.renewal_required}}
+                        <br>
+                        {{license_form.renewal_date.label}}
+                        {{license_form.renewal_date}}
                     </div>
 
                 </form>
