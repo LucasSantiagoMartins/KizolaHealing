@@ -62,6 +62,7 @@ class Phone(models.Model):
 class ContactInformation(models.Model):
     email = models.EmailField(max_length=150)
     website = models.URLField()
+    # related_name='phone_numbers' from Phone model
 
     def __str__(self):
         return self.phone_numbers
