@@ -9,6 +9,7 @@ from .forms import (
     OperatingShiftForm,
     CertificationForm,
     ServiceTypeForm,
+    DutyShiftForm,
     LicenseForm,
     AddressForm,
     PhoneForm,
@@ -29,6 +30,7 @@ def integrate_institution_view(request):
         context['operating_shift_form'] = OperatingShiftForm
         context['certification_form'] = CertificationForm
         context['service_type_form'] = ServiceTypeForm
+        context['duty_shift_form'] = DutyShiftForm
         context['license_form'] = LicenseForm
         context['address_form'] = AddressForm
         context['phone_form'] = PhoneForm
