@@ -7,10 +7,11 @@ from .models import (
     PolicyInformation,
     LicenseDocument,
     Certification,
+    OperatingHour,
     ServiceType,
     License,
     Address,
-    Phone
+    Phone,
 )
 
 
@@ -147,4 +148,14 @@ class ServiceTypeForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
 
-
+class OperatingHourForm(forms.ModelForm):
+    class Meta:
+        model = OperatingHour
+        fields = ['operating_hour', 'begin_day', 'end_day', 'begin_hour', 'end_hour']
+        widgets = {
+            'operating_hour': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'begin_day': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'end_day': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'begin_hour': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'end_hour': forms.Select(attrs={'class': 'form-control mb-3'}),
+        }
