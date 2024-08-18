@@ -121,7 +121,7 @@ class LicenseForm(forms.ModelForm):
         widgets = {
             'license_title': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Lincense title...'}),
             'license_number': forms.NumberInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Lincense number...'}),
-            'license_status': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'license_status': forms.Select(attrs={'class': 'form-control mb-3'}),
             'issue_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
             'expiration_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
             'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3'}),
