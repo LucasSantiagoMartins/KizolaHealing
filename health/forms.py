@@ -125,7 +125,7 @@ class LicenseForm(forms.ModelForm):
             'issue_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
             'expiration_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
             'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'renewal_required': forms.CheckboxInput(attrs={'class': 'form-control mb-3'}),
+            'renewal_required': forms.CheckboxInput(attrs={'class': 'mb-3'}),
             'renewal_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
             'scope': forms.TextInput(attrs={'class': 'form-control mb-3'})
         }
