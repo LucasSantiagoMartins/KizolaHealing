@@ -6,6 +6,7 @@ from .models import (
     ContactInformation,
     PolicyInformation,
     LicenseDocument,
+    OperatingShift,
     Certification,
     OperatingHour,
     ServiceType,
@@ -175,3 +176,15 @@ class DutyShiftForm(forms.ModelForm):
             'location': forms.Select(attrs={'class': 'form-control mb-3'}),
         }
  
+
+class OperatingShiftForm(forms.ModelForm):
+    class Meta:
+        model = OperatingShift
+        fields = ['shift_type', 'begin', 'end']
+        widgets = {
+            'shift_type': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'begin': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'end': forms.Select(attrs={'class': 'form-control mb-3'}),
+        }
+
+    
