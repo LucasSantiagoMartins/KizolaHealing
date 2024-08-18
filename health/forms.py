@@ -106,10 +106,10 @@ class CertificationForm(forms.ModelForm):
             'certification_number': forms.NumberInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Certification number...'}),
             'certification_status': forms.Select(attrs={'class': 'form-control mb-3'}),
             'expiration_date': forms.DateInput(attrs={'class': 'form-control mb-3', 'type': 'date'}),
-            'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Issuing authority...'}),
             'renewal_required': forms.CheckboxInput(attrs={'class': 'mb-3'}),
             'renewal_date': forms.DateInput(attrs={'class': 'form-control mb-3','type': 'date'}),
-            'scope': forms.TextInput(attrs={'class': 'form-control mb-3'})  
+            'scope': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Scope...'})
         }
         
 
