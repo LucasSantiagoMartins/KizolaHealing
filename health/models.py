@@ -78,7 +78,7 @@ class AdministrativeInformation(models.Model):
 class ServiceType(models.Model):
     service_name = models.CharField(max_length=3, choices=SERVICE_TYPE_CHOICES)
     description = models.TextField(blank=True, null=True)
-
+    # related_name='institutions' from OperationInformation model
 
 class PolicyInformation(models.Model):
     title = models.CharField(max_length=3, choices=POLICY_TITLE_CHOICES)
