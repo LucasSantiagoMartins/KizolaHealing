@@ -181,6 +181,7 @@ class OperatingHour(models.Model):
     end_day = models.CharField(max_length=2, choices=WEEK_DAYS_CHOICES)
     begin_hour = models.CharField(max_length=3, choices=HOURS_CHOICES)
     end_hour = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    operation_information = models.ForeignKey(OperationInformation, related_name='operating_hours', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.begin_day} à {self.end_day}: {self.begin_hour}-{self.end_hour}"
