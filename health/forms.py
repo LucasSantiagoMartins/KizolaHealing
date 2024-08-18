@@ -102,8 +102,8 @@ class CertificationForm(forms.ModelForm):
         model = Certification
         fields = '__all__'
         widgets = {
-            'certification_title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'certification_number': forms.NumberInput(attrs={'class': 'form-control mb-3'}),
+            'certification_title': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Certification title...'}),
+            'certification_number': forms.NumberInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Certification number...'}),
             'certification_status': forms.Select(attrs={'class': 'form-control mb-3'}),
             'expiration_date': forms.DateInput(attrs={'class': 'form-control mb-3', 'type': 'date'}),
             'issuing_authority': forms.TextInput(attrs={'class': 'form-control mb-3'}),
