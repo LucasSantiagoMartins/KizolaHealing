@@ -9,7 +9,7 @@ from .models import (
     OperatingShift,
     Certification,
     OperatingHour,
-    ServiceType,
+    ServiceOffered,
     DutyShift,
     License,
     Address,
@@ -141,9 +141,9 @@ class PhoneForm(forms.ModelForm):
             'number': forms.NumberInput(attrs={'class': 'form-control mb-3'})
         }
 
-class ServiceTypeForm(forms.ModelForm):
+class ServiceOfferedForm(forms.ModelForm):
     class Meta:
-        model = ServiceType
+        model = ServiceOffered
         fields = '__all__'
         widgets = {
             'service_name': forms.Select(attrs={'class': 'form-control mb-3'}),
