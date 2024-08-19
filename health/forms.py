@@ -168,9 +168,9 @@ class DutyShiftForm(forms.ModelForm):
         model = DutyShift
         fields = ['name', 'operating_shift', 'description', 'begin_day', 'end_day', 'location']
         widgets = {
-            'name': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'name': forms.Select(attrs={'class': 'form-control mb-3', 'placeholder': 'Name...'}),
             'operating_shift': forms.Select(attrs={'class': 'form-control mb-3'}),
-            'description': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'description': forms.Select(attrs={'class': 'form-control mb-3', 'placeholder': 'Description...'}),
             'begin_day': forms.Select(attrs={'class': 'form-control mb-3'}),
             'end_day': forms.Select(attrs={'class': 'form-control mb-3'}),
             'location': forms.Select(attrs={'class': 'form-control mb-3'}),
