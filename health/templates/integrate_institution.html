@@ -186,6 +186,21 @@
                         {{duty_shift_form.location}}
                     </div>
 
+                    <div id="div-form-policy-information">
+                        <h4>Registrar as políticas da instituição</h4>
+                        {{policy_information_form.title.label}}
+                        {{policy_information_form.title}}
+                        {{policy_information_form.description.label}}
+                        {{policy_information_form.description}}
+                        <label>Implementation date and Last review date</label>
+                        <div class="input-group">
+                            {{policy_information_form.implementation_date}}
+                            {{policy_information_form.last_review_date}}
+                        </div>
+                        {{policy_information_form.document.label}}
+                        {{policy_information_form.document}}
+                    </div>
+
                 </form>
         </div>
     </div>
