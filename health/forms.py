@@ -180,11 +180,11 @@ class DutyShiftForm(forms.ModelForm):
 class OperatingShiftForm(forms.ModelForm):
     class Meta:
         model = OperatingShift
-        fields = ['shift_type', 'begin', 'end']
+        fields = ['shift_type', 'begin_hour', 'end_hour']
         widgets = {
             'shift_type': forms.Select(attrs={'class': 'form-control mb-3'}),
-            'begin': forms.Select(attrs={'class': 'form-control mb-3'}),
-            'end': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'begin_hour': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'end_hour': forms.Select(attrs={'class': 'form-control mb-3'}),
         }
 
     
