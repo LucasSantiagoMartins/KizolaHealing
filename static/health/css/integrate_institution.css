@@ -57,3 +57,22 @@
 #button-card button:first-child{
     margin-left: 1%;
 }
+
+
+/* FORMS */
+
+#div-form-administrative-information,
+#div-form-certification,
+#div-form-certification-document,
+#div-form-license,
+#div-form-license-document,
+#div-form-address,
+#div-form-phone,
+#div-form-contact-information,
+#div-form-services-offered,
+#div-form-operating-hour,
+#div-form-operating-shifts,
+#div-form-duty-shifts,
+#div-form-policy-information{
+    display: none;
+}
