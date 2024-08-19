@@ -81,8 +81,8 @@ class PolicyInformationForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'description': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'implementation_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
-            'last_review_date': forms.DateInput(attrs={'class': 'form-control mb-3'}),
+            'implementation_date': forms.DateInput(attrs={'class': 'form-control mb-3', 'type': 'date'}),
+            'last_review_date': forms.DateInput(attrs={'class': 'form-control mb-3', 'type': 'date'}),
             'document': forms.FileInput(attrs={'class': 'form-control mb-3'})
         }
 
