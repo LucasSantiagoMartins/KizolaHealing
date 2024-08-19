@@ -9,7 +9,7 @@ from .models import (
     LicenseDocument,
     Certification,
     Institution,
-    ServiceType,
+    ServiceOffered,
     License,
     Address,
     Phone
@@ -24,7 +24,7 @@ admin.site.register(ContactInformation)
 admin.site.register(PolicyInformation)
 admin.site.register(LicenseDocument)
 admin.site.register(Certification)
-admin.site.register(ServiceType)
+admin.site.register(ServiceOffered)
 admin.site.register(Institution)
 admin.site.register(Address)
 admin.site.register(License)
