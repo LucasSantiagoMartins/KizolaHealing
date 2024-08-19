@@ -75,7 +75,7 @@ class AdministrativeInformation(models.Model):
     responsible_person_phone = models.CharField(max_length=13)
 
 
-class ServiceType(models.Model):
+class ServiceOffered(models.Model):
     service_name = models.CharField(max_length=3, choices=SERVICE_TYPE_CHOICES)
     description = models.TextField(blank=True, null=True)
     # related_name='institutions' from OperationInformation model
@@ -92,7 +92,7 @@ class PolicyInformation(models.Model):
 
 
 class OperationInformation(models.Model):
-    services_offered = models.ManyToManyField(ServiceType, related_name='institutions')
+    services_offered = models.ManyToManyField(ServiceOffered, related_name='institutions')
     # related_name='operating_shifts' from OperatingShift model
     # related_name='duty_shifts' from DutyShift model
     # related_name='operating_hours', from OperatingHour model
