@@ -153,13 +153,13 @@ class CertificationDocument(models.Model):
 
 class OperatingShift(models.Model):
     shift_type = models.CharField(max_length=3, choices=SHIFT_TYPE_CHOICES)
-    begin = models.CharField(max_length=3, choices=HOURS_CHOICES)
-    end = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    begin_hour = models.CharField(max_length=3, choices=HOURS_CHOICES)
+    end_hour = models.CharField(max_length=3, choices=HOURS_CHOICES)
     operation_information = models.ForeignKey(OperationInformation, related_name='operating_shifts', on_delete=models.CASCADE)
 
     @property
     def duration(self):
-        return f"Das {self.begin} às {self.end}."
+        return f"Das {self.begin_hour} às {self.end_hour}."
 
     def __str__(self):
         return self.shift_type
