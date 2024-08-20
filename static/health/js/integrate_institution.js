@@ -15,6 +15,20 @@ const forms = [
     '#div-form-policy-information',
 ]
 
+// forms can be filled out more than once
+const forms_than_once = [
+    forms[2],
+    forms[3],
+    forms[4],
+    forms[5],
+    forms[7],
+    forms[9],
+    forms[10],
+    forms[11],
+    forms[12],
+    forms[13],
+]
+
 
 let current_form = 0
 function next_form(){
@@ -23,6 +37,12 @@ function next_form(){
         current_form += 1
     }
     $(forms[current_form]).show() 
+
+    if(forms_than_once.includes(forms[current_form])){
+        $('#btn-duplicate-form').show()
+    }else{
+        $('#btn-duplicate-form').hide()
+    }
 }
 function previous_form(){
     $(forms[current_form]).hide()
@@ -30,4 +50,9 @@ function previous_form(){
         current_form -= 1
     }
     $(forms[current_form]).show() 
+    if(forms_than_once.includes(forms[current_form])){
+        $('#btn-duplicate-form').show()
+    }else{
+        $('#btn-duplicate-form').hide()
+    }
 }
