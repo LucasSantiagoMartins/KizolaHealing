@@ -1,32 +1,32 @@
-const forms = {
-    1: '#div-form-institutional-information',
-    2: '#div-form-administrative-information',
-    3: '#div-form-certification',
-    4: '#div-form-certification-document',
-    5: '#div-form-license',
-    6: '#div-form-license-document',
-    7: '#div-form-address',
-    8: '#div-form-phone',
-    9: '#div-form-contact-information',
-    10: '#div-form-services-offered',
-    11: '#div-form-operating-hour',
-    12: '#div-form-operating-shifts',
-    13: '#div-form-duty-shifts',
-    14: '#div-form-policy-information',
-}
+const forms = [
+    '#div-form-institutional-information',
+    '#div-form-administrative-information',
+    '#div-form-certification',
+    '#div-form-certification-document',
+    '#div-form-license',
+    '#div-form-license-document',
+    '#div-form-address',
+    '#div-form-phone',
+    '#div-form-contact-information',
+    '#div-form-services-offered',
+    '#div-form-operating-hour',
+    '#div-form-operating-shifts',
+    '#div-form-duty-shifts',
+    '#div-form-policy-information',
+]
 
 
-let current_form = 1
+let current_form = 0
 function next_form(){
     $(forms[current_form]).hide()
-    if (current_form < 14){
+    if (current_form < 13){
         current_form += 1
     }
     $(forms[current_form]).show() 
 }
 function previous_form(){
     $(forms[current_form]).hide()
-    if (current_form > 1){
+    if (current_form > 0){
         current_form -= 1
     }
     $(forms[current_form]).show() 
