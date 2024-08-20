@@ -1,4 +1,4 @@
-let forms = {
+const forms = {
     1: '#div-form-institutional-information',
     2: '#div-form-administrative-information',
     3: '#div-form-certification',
