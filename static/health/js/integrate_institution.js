@@ -19,17 +19,15 @@ let forms = {
 let current_form = 1
 function next_form(){
     $(forms[current_form]).hide()
-    current_form += 1
-    if (current_form > 14){
-        current_form = 1
+    if (current_form < 14){
+        current_form += 1
     }
     $(forms[current_form]).show() 
 }
 function previous_form(){
     $(forms[current_form]).hide()
-    current_form -= 1
-    if (current_form < 1){
-        current_form = 14
+    if (current_form > 1){
+        current_form -= 1
     }
     $(forms[current_form]).show() 
 }
