@@ -14,3 +14,22 @@ let forms = {
     13: '#div-form-duty-shifts',
     14: '#div-form-policy-information',
 }
+
+
+let current_form = 1
+function next_form(){
+    $(forms[current_form]).hide()
+    current_form += 1
+    if (current_form > 14){
+        current_form = 1
+    }
+    $(forms[current_form]).show() 
+}
+function previous_form(){
+    $(forms[current_form]).hide()
+    current_form -= 1
+    if (current_form < 1){
+        current_form = 14
+    }
+    $(forms[current_form]).show() 
+}
