@@ -57,6 +57,11 @@
 #button-card button:first-child{
     margin-left: 1%;
 }
+#button-card button:last-child{
+    width: 190px;
+    margin-right: 1%;
+    display: none;
+}
 
 
 /* FORMS */
