@@ -29,7 +29,7 @@
     }
 
 
-#main #div-form  
+#main #div-forms  
     {
         width: 70%;
         float: right;
@@ -37,7 +37,7 @@
 
     }
 
-#main #div-form form{padding: 4%;}
+#main #div-forms form{padding: 4%;}
 
 
 
@@ -66,18 +66,18 @@
 
 /* FORMS */
 
-#div-form-administrative-information,
-#div-form-certification,
-#div-form-certification-document,
-#div-form-license,
-#div-form-license-document,
-#div-form-address,
-#div-form-phone,
-#div-form-contact-information,
-#div-form-services-offered,
-#div-form-operating-hour,
-#div-form-operating-shifts,
-#div-form-duty-shifts,
-#div-form-policy-information{
+#div-forms-administrative-information,
+#div-forms-certification,
+#div-forms-certification-document,
+#div-forms-license,
+#div-forms-license-document,
+#div-forms-address,
+#div-forms-phone,
+#div-forms-contact-information,
+#div-forms-services-offered,
+#div-forms-operating-hour,
+#div-forms-operating-shifts,
+#div-forms-duty-shifts,
+#div-forms-policy-information{
     display: none;
 }
