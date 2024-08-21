@@ -16,7 +16,7 @@
     
     <div id="div-forms">
         <div class="row">
-                <form action="{% url 'integrate_institution_url' %}">
+                <form action="{% url 'integrate_institution_url' %}" method="POST">
                     {% csrf_token %}
 
                     <div id="div-form-institutional-information">
