@@ -61,47 +61,114 @@ function previous_form(){
 
 function duplicate_form(){
     form = document.querySelector(forms[current_form])
+
+    if(validate_form(form)){
+        const inputs = form.querySelectorAll('input')
+        const selects = form.querySelectorAll('select')
+
+        for (let i = 0; i < inputs.length; i++){
+            if (inputs[i].type == 'file'){
+                let new_input_file = document.createElement('input')
+
+                // clone input's file 
+                data_transfer = new DataTransfer()
+                data_transfer.items.add(inputs[i].files[0])
+
+                new_input_file.style.display = 'none'
+                new_input_file.type = inputs[i].type
+                new_input_file.name = inputs[i].name
+                new_input_file.files = data_transfer.files
+                
+                form.appendChild(new_input_file)
+            }else{
+                let new_input = document.createElement('input')
+
+                new_input.style.display = 'none'
+                new_input.value = inputs[i].value
+                new_input.type = inputs[i].type
+                new_input.name = inputs[i].name
+                
+                form.appendChild(new_input)
+            }
+            
+            inputs[i].value = ''
+        }
+
+        for (let i = 0; i < selects.length; i++){
+            select = document.createElement('select')
+            select.style.display = 'none'
+            select.name = selects[i].name
+
+            select.innerHTML = `
+                <option value='${selects[i].value}' seletced></option>
+            `
+        }
+    }
+}
+
+
+function  validate_form(form){
     const inputs = form.querySelectorAll('input')
     const selects = form.querySelectorAll('select')
+    let invalidFields = []
 
-    for (let i = 0; i < inputs.length; i++){
-        if (inputs[i].type == 'file'){
-            let new_input_file = document.createElement('input')
+    inputs.forEach((input)=>{
 
-            // clone input's file 
-            data_transfer = new DataTransfer()
-            data_transfer.items.add(inputs[i].files[0])
-
-            new_input_file.style.display = 'none'
-            new_input_file.type = inputs[i].type
-            new_input_file.name = inputs[i].name
-            new_input_file.files = data_transfer.files
-            
-            form.appendChild(new_input_file)
+        if(input.type == 'file'){
+            if(!input.files[0]){
+                input.classList.add('is-invalid')
+                invalidFields.push(input)
+            }else{
+                input.classList.remove('is-invalid')
+                input.classList.add('is-valid')
+            }
         }else{
-            let new_input = document.createElement('input')
-
-            new_input.style.display = 'none'
-            new_input.value = inputs[i].value
-            new_input.type = inputs[i].type
-            new_input.name = inputs[i].name
-            
-            form.appendChild(new_input)
+            if(!input.value){
+                
+                input.classList.add('is-invalid')
+                invalidFields.push(input)
+                
+                
+                
+            }else{
+                input.classList.remove('is-invalid')
+                input.classList.add('is-valid')
+            }
         }
-        
-        inputs[i].value = ''
-    }
+    })
 
-    for (let i = 0; i < selects.length; i++){
-        select = document.createElement('select')
-        select.style.display = 'none'
-        select.name = selects[i].name
+    selects.forEach((select)=>{
+        if(select.type == 'file'){
+            if(!select.files[0]){
+                select.classList.add('is-invalid')
+                invalidFields.push(select)
+            }else{
+                select.classList.remove('is-invalid')
+                select.classList.add('is-valid')
+            }
+        }else{
+            if(!select.value){
+                select.classList.add('is-invalid')
+                invalidFields.push(select)
+                
+            }else{
+                select.classList.remove('is-invalid')
+                select.classList.add('is-valid')
+            }
+        }
+    })
 
-        select.innerHTML = `
-            <option value='${selects[i].value}' seletced></option>
-        `
+    if(invalidFields.length == 0){
+        inputs.forEach((input)=>{
+            input.classList.remove('is-valid')
+        })
+        selects.forEach((select)=>{
+            select.classList.remove('is-valid')
+        })
+        return true
+    }else{
+        return false
     }
-    
 }
 
 
