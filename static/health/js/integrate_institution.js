@@ -56,3 +56,52 @@ function previous_form(){
         $('#btn-duplicate-form').hide()
     }
 }
+
+
+
+function duplicate_form(){
+    form = document.querySelector(forms[current_form])
+    const inputs = form.querySelectorAll('input')
+    const selects = form.querySelectorAll('select')
+
+    for (let i = 0; i < inputs.length; i++){
+        if (inputs[i].type == 'file'){
+            let new_input_file = document.createElement('input')
+
+            // clone input's file 
+            data_transfer = new DataTransfer()
+            data_transfer.items.add(inputs[i].files[0])
+
+            new_input_file.style.display = 'none'
+            new_input_file.type = inputs[i].type
+            new_input_file.name = inputs[i].name
+            new_input_file.files = data_transfer.files
+            
+            form.appendChild(new_input_file)
+        }else{
+            let new_input = document.createElement('input')
+
+            new_input.style.display = 'none'
+            new_input.value = inputs[i].value
+            new_input.type = inputs[i].type
+            new_input.name = inputs[i].name
+            
+            form.appendChild(new_input)
+        }
+        
+        inputs[i].value = ''
+    }
+
+    for (let i = 0; i < selects.length; i++){
+        select = document.createElement('select')
+        select.style.display = 'none'
+        select.name = selects[i].name
+
+        select.innerHTML = `
+            <option value='${selects[i].value}' seletced></option>
+        `
+    }
+    
+}
+
+
