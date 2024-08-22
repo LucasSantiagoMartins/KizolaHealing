@@ -71,13 +71,13 @@ function duplicate_form(){
                 let newInputFile = document.createElement('input')
 
                 // clone input's file 
-                data_transfer = new DataTransfer()
-                data_transfer.items.add(inputs[i].files[0])
+                dataTransfer = new DataTransfer()
+                dataTransfer.items.add(inputs[i].files[0])
 
                 newInputFile.style.display = 'none'
                 newInputFile.type = inputs[i].type
                 newInputFile.name = inputs[i].name
-                newInputFile.files = data_transfer.files
+                newInputFile.files = dataTransfer.files
                 
                 form.appendChild(newInputFile)
             }else{
