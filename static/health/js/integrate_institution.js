@@ -81,14 +81,14 @@ function duplicate_form(){
                 
                 form.appendChild(newInputFile)
             }else{
-                let new_input = document.createElement('input')
+                let newInput = document.createElement('input')
 
-                new_input.style.display = 'none'
-                new_input.value = inputs[i].value
-                new_input.type = inputs[i].type
-                new_input.name = inputs[i].name
+                newInput.style.display = 'none'
+                newInput.value = inputs[i].value
+                newInput.type = inputs[i].type
+                newInput.name = inputs[i].name
                 
-                form.appendChild(new_input)
+                form.appendChild(newInput)
             }
             
             inputs[i].value = ''
