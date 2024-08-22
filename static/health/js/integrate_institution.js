@@ -31,7 +31,7 @@ const formsThanOnce = [
 
 
 let currentForm = 0
-function next_form(){
+function nextForm(){
     $(forms[currentForm]).hide()
     if (currentForm < 13){
         currentForm += 1
