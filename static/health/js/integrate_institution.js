@@ -68,18 +68,18 @@ function duplicate_form(){
 
         for (let i = 0; i < inputs.length; i++){
             if (inputs[i].type == 'file'){
-                let new_input_file = document.createElement('input')
+                let newInputFile = document.createElement('input')
 
                 // clone input's file 
                 data_transfer = new DataTransfer()
                 data_transfer.items.add(inputs[i].files[0])
 
-                new_input_file.style.display = 'none'
-                new_input_file.type = inputs[i].type
-                new_input_file.name = inputs[i].name
-                new_input_file.files = data_transfer.files
+                newInputFile.style.display = 'none'
+                newInputFile.type = inputs[i].type
+                newInputFile.name = inputs[i].name
+                newInputFile.files = data_transfer.files
                 
-                form.appendChild(new_input_file)
+                form.appendChild(newInputFile)
             }else{
                 let new_input = document.createElement('input')
 
