@@ -129,12 +129,16 @@ renewalCheckBoxLicense.addEventListener('change', ()=>{
     renewalDateInputDisabler(renewalCheckBoxLicense, renewalDateInput)
 })
 
-function  validateForm(form){
+function validateForm(form){
     const inputs = form.querySelectorAll('input')
     const selects = form.querySelectorAll('select')
     let invalidFields = []
-    let renewalRequiredChecked = document.querySelector('#id_CertificationForm_renewal_required').checked
-    
+
+    if(form.id == 'div-form-certification'){
+        renewalRequiredChecked = document.querySelector('#id_CertificationForm_renewal_required').checked
+    }else if(form.id == 'div-form-license'){
+        renewalRequiredChecked = document.querySelector('#id_LicenseForm_renewal_required').checked
+    }
 
     inputs.forEach((input)=>{
         if(input.type == 'file'){
