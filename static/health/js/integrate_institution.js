@@ -30,27 +30,27 @@ const formsThanOnce = [
 ]
 
 
-let current_form = 0
+let currentForm = 0
 function next_form(){
-    $(forms[current_form]).hide()
-    if (current_form < 13){
-        current_form += 1
+    $(forms[currentForm]).hide()
+    if (currentForm < 13){
+        currentForm += 1
     }
-    $(forms[current_form]).show() 
+    $(forms[currentForm]).show() 
 
-    if(formsThanOnce.includes(forms[current_form])){
+    if(formsThanOnce.includes(forms[currentForm])){
         $('#btn-duplicate-form').show()
     }else{
         $('#btn-duplicate-form').hide()
     }
 }
 function previous_form(){
-    $(forms[current_form]).hide()
-    if (current_form > 0){
-        current_form -= 1
+    $(forms[currentForm]).hide()
+    if (currentForm > 0){
+        currentForm -= 1
     }
-    $(forms[current_form]).show() 
-    if(formsThanOnce.includes(forms[current_form])){
+    $(forms[currentForm]).show() 
+    if(formsThanOnce.includes(forms[currentForm])){
         $('#btn-duplicate-form').show()
     }else{
         $('#btn-duplicate-form').hide()
@@ -60,7 +60,7 @@ function previous_form(){
 
 
 function duplicate_form(){
-    form = document.querySelector(forms[current_form])
+    form = document.querySelector(forms[currentForm])
 
     if(validate_form(form)){
         const inputs = form.querySelectorAll('input')
