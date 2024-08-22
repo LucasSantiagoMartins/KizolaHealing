@@ -44,7 +44,7 @@ function nextForm(){
         $('#btn-duplicate-form').hide()
     }
 }
-function previous_form(){
+function previousForm(){
     $(forms[currentForm]).hide()
     if (currentForm > 0){
         currentForm -= 1
