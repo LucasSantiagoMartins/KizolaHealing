@@ -59,7 +59,7 @@ function previousForm(){
 
 
 
-function duplicate_form(){
+function duplicateForm(){
     form = document.querySelector(forms[currentForm])
 
     if(validate_form(form)){
