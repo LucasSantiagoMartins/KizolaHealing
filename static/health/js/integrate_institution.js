@@ -105,7 +105,20 @@ function duplicateForm(){
         }
     }
 }
+renewalRequiredCheckbox = document.querySelector('#id_CertificationForm_renewal_required')
 
+renewalRequiredCheckbox.addEventListener('change', ()=>{
+    renewalDateInput = document.querySelector('#id_CertificationForm_renewal_date')
+    if(renewalRequiredCheckbox.checked == false){
+        renewalDateInput.classList.remove('is-invalid')
+        renewalDateInput.classList.remove('is-valid')
+        renewalDateInput.value = ''
+        renewalDateInput.disabled = true
+    }else{
+        renewalDateInput.disabled = false
+    }
+    
+})
 
 function  validateForm(form){
     const inputs = form.querySelectorAll('input')
