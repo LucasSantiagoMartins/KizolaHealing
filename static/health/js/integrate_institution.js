@@ -62,7 +62,7 @@ function previousForm(){
 function duplicateForm(){
     form = document.querySelector(forms[currentForm])
 
-    if(validate_form(form)){
+    if(validateForm(form)){
         const inputs = form.querySelectorAll('input')
         const selects = form.querySelectorAll('select')
 
@@ -107,7 +107,7 @@ function duplicateForm(){
 }
 
 
-function  validate_form(form){
+function  validateForm(form){
     const inputs = form.querySelectorAll('input')
     const selects = form.querySelectorAll('select')
     let invalidFields = []
