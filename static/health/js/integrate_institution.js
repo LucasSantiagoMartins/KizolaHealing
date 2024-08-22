@@ -111,9 +111,10 @@ function  validate_form(form){
     const inputs = form.querySelectorAll('input')
     const selects = form.querySelectorAll('select')
     let invalidFields = []
+    let renewalRequiredChecked = document.querySelector('#id_CertificationForm_renewal_required').checked
+    
 
     inputs.forEach((input)=>{
-
         if(input.type == 'file'){
             if(!input.files[0]){
                 input.classList.add('is-invalid')
@@ -124,10 +125,17 @@ function  validate_form(form){
             }
         }else{
             if(!input.value){
-                
-                input.classList.add('is-invalid')
-                invalidFields.push(input)
-                
+                if(input.name == 'renewal_date'){
+                    if(renewalRequiredChecked){
+                        input.classList.add('is-invalid')
+                        invalidFields.push(input)
+                    }else{
+                        input.classList.remove('is-invalid')
+                    }
+                }else{
+                    input.classList.add('is-invalid')
+                    invalidFields.push(input)
+                }
                 
                 
             }else{
@@ -150,7 +158,6 @@ function  validate_form(form){
             if(!select.value){
                 select.classList.add('is-invalid')
                 invalidFields.push(select)
-                
             }else{
                 select.classList.remove('is-invalid')
                 select.classList.add('is-valid')
@@ -169,6 +176,7 @@ function  validate_form(form){
     }else{
         return false
     }
+
 }
 
 
