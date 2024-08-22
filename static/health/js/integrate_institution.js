@@ -117,6 +117,17 @@ function renewalDateInputDisabler(renewalCheckbox, renewalDateInput){
     }
 }
 
+renewalCheckboxCertification = document.querySelector('#id_CertificationForm_renewal_required')
+renewalCheckBoxLicense = document.querySelector('#id_LicenseForm_renewal_required')
+
+renewalCheckboxCertification.addEventListener('change', ()=>{
+    let renewalDateInput = document.querySelector('#id_CertificationForm_renewal_date')
+    renewalDateInputDisabler(renewalCheckboxCertification, renewalDateInput)
+})
+renewalCheckBoxLicense.addEventListener('change', ()=>{
+    let renewalDateInput = document.querySelector('#id_LicenseForm_renewal_date')
+    renewalDateInputDisabler(renewalCheckBoxLicense, renewalDateInput)
+})
 
 function  validateForm(form){
     const inputs = form.querySelectorAll('input')
