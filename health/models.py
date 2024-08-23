@@ -92,7 +92,7 @@ class PolicyInformation(models.Model):
 
 
 class OperationInformation(models.Model):
-    services_offered = models.ManyToManyField(ServiceOffered, related_name='institutions')
+    services_offered = models.ManyToManyField(ServiceOffered)
     # related_name='operating_shifts' from OperatingShift model
     # related_name='duty_shifts' from DutyShift model
     # related_name='operating_hours', from OperatingHour model
