@@ -87,7 +87,6 @@ function duplicateForm(){
                 newInput.value = inputs[i].value
                 newInput.type = inputs[i].type
                 newInput.name = inputs[i].name
-                
                 form.appendChild(newInput)
             }
             
@@ -102,6 +101,7 @@ function duplicateForm(){
             select.innerHTML = `
                 <option value='${selects[i].value}' seletced></option>
             `
+            selects[i].value = ''
         }
     }
 }
@@ -204,5 +204,3 @@ function validateForm(form){
     }
 
 }
-
-
