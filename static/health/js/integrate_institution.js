@@ -29,8 +29,10 @@ const formsThanOnce = [
     forms[13],
 ]
 
-
+let operatingShiftsArray = []
 let currentForm = 0
+
+
 function nextForm(){
     $(forms[currentForm]).hide()
     if (currentForm < 13){
@@ -42,6 +44,14 @@ function nextForm(){
         $('#btn-duplicate-form').show()
     }else{
         $('#btn-duplicate-form').hide()
+    }
+
+    // 11 => div-form-operating-shifts and 1 is the next div-form
+    if(currentForm == 11 + 1){
+        shiftTypeSelect = document.querySelector('#id_OperatingShiftForm_shift_type')
+        if(shiftTypeSelect.value !== ''){
+            operatingShiftsArray.push(shiftTypeSelect.value)
+        }
     }
 }
 function previousForm(){
@@ -60,7 +70,8 @@ function previousForm(){
 
 
 function duplicateForm(){
-    form = document.querySelector(forms[currentForm])
+    formId = forms[currentForm]
+    form = document.querySelector(formId)
 
     if(validateForm(form)){
         const inputs = form.querySelectorAll('input')
@@ -101,6 +112,9 @@ function duplicateForm(){
             select.innerHTML = `
                 <option value='${selects[i].value}' seletced></option>
             `
+            if(selects[i].name == 'shift_type'){
+                operatingShiftsArray.push(selects[i].value)
+            }
             selects[i].value = ''
         }
     }
