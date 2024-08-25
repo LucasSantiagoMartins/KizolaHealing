@@ -48,9 +48,27 @@ function nextForm(){
 
     // 11 => div-form-operating-shifts and 1 is the next div-form
     if(currentForm == 11 + 1){
-        shiftTypeSelect = document.querySelector('#id_OperatingShiftForm_shift_type')
-        if(shiftTypeSelect.value !== ''){
+        let shiftTypeSelect = document.querySelector('#id_OperatingShiftForm_shift_type')
+        let beginHourInput = document.querySelector('#id_OperatingShiftForm_begin_hour')
+        let endHourInput = document.querySelector('#id_OperatingShiftForm_end_hour')
+        
+        if(shiftTypeSelect.value != '' && beginHourInput.value != '' && endHourInput.value != ''){
             operatingShiftsArray.push(shiftTypeSelect.value)
+            let dutyShiftOperatingShiftSelect = document.querySelector('#id_DutyShiftForm_operating_shift')
+
+            shiftTypeSelectOptions = shiftTypeSelect.options
+            optionsText = {}
+            for(let i = 0; i < shiftTypeSelectOptions.length; i++){
+                optionsText[shiftTypeSelectOptions[i].value] = shiftTypeSelectOptions[i].innerHTML
+            }
+            for(let i = 0; i < operatingShiftsArray.length; i++){
+                option = document.createElement('option')
+                option.value = operatingShiftsArray[i]
+                console.log(option.value)
+                option.innerHTML = optionsText[operatingShiftsArray[i]]
+                dutyShiftOperatingShiftSelect.appendChild(option) 
+            }
+           
         }
     }
 }
