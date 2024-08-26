@@ -41,7 +41,6 @@ class Address(models.Model):
     street_address = models.CharField(max_length=120)
     neighborhood = models.CharField(max_length=40)
     province = models.CharField(max_length=40)
-    postal_code = models.CharField(max_length=4)
 
     class Meta:
         verbose_name_plural = 'Addresses'
