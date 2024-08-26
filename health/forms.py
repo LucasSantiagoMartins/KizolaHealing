@@ -36,7 +36,6 @@ class AddressForm(forms.ModelForm):
             'street_address': forms.TextInput(attrs={'class': 'form-control mb-3', 'id': 'id_AddressForm_street_address'}),
             'neighborhood': forms.TextInput(attrs={'class': 'form-control mb-3', 'id': 'id_AddressForm_neighborhood'}),
             'province': forms.TextInput(attrs={'class': 'form-control mb-3', 'id': 'id_AddressForm_province'}),
-            'postal_code': forms.TextInput(attrs={'class': 'form-control mb-3', 'id': 'id_AddressForm_postal_code'})
         }
        
 
