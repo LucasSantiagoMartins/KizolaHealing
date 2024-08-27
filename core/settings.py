@@ -1,3 +1,5 @@
+from django.contrib.messages import constants
+from django.contrib import messages
 from pathlib import Path
 import os
 
@@ -125,3 +127,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+    'alert-success': constants.SUCCESS,
+    'alert-warning': constants.WARNING,
+    'alert-error': constants.ERROR,
+}
