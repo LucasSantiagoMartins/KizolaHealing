@@ -1,6 +1,7 @@
 from django.test import TestCase
 from health.models import (
     InstitutionalInformation,
+    ContactInformation,
     Address
 )
 
@@ -44,3 +45,24 @@ class AddressTest(TestCase):
     
     def test_province_chekc(self):
         self.assertEqual(self.address.province, 'Luanda')
+
+
+class ContactInformationTest(TestCase):
+    def setUp(self):
+        self.contact_information = ContactInformation(
+            email = 'kizolahealing@test.com',
+            website = 'https://kizolahealing.com'
+        )
+
+    def test_email_check(self):
+        self.assertEqual(
+            self.contact_information.email,
+            'kizolahealing@test.com'
+        )
+
+    def test_website_check(self):
+        self.assertEqual(
+            self.contact_information.website,
+            'https://kizolahealing.com'
+        )
+        
