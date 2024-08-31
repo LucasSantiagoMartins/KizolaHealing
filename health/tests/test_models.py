@@ -5,7 +5,7 @@ from health.models import (
 )
 
 
-class InstitutionalInformationTestCase(TestCase):
+class InstitutionalInformationTest(TestCase):
     def setUp(self):
         self.institutional_information = InstitutionalInformation(
             institution_name = 'Hospital-test',
