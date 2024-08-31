@@ -1,5 +1,6 @@
 from django.test import TestCase
 from health.models import (
+    AdministrativeInformation,
     InstitutionalInformation,
     ContactInformation,
     Address,
@@ -80,4 +81,39 @@ class PhoneTest(TestCase):
     
     def test_number_check(self):
         self.assertEqual(self.phone.number, '834729573')
+
+
+class AdministrativeInformationTest(TestCase):
+    def setUp(self):
+        self.administrative_information = AdministrativeInformation(
+            responsible_person_name = 'John doe',
+            responsible_person_nif = '033485838LA049',
+            responsible_person_email = 'johndoe@gmail.com',
+            responsible_person_phone = '936583451'
+        )
+    
+    def test_responsible_person_name_check(self):
+        self.assertEqual(
+            self.administrative_information.responsible_person_name,
+            'John doe'
+        )
+
+    def test_responsible_person_nif_check(self):
+        self.assertEqual(
+            self.administrative_information.responsible_person_nif,
+            '033485838LA049'
+        )
+    
+    def test_responsible_person_email_check(self):
+        self.assertEqual(
+            self.administrative_information.responsible_person_email,
+            'johndoe@gmail.com'
+        )
+    
+    def test_responsible_person_phone_check(self):
+        self.assertEqual(
+            self.administrative_information.responsible_person_phone,
+            '936583451'
+        )
+
     
