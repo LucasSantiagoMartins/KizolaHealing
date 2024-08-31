@@ -1,6 +1,7 @@
 from django.test import TestCase
 from health.models import (
-    InstitutionalInformation
+    InstitutionalInformation,
+    Address
 )
 
 
@@ -25,3 +26,21 @@ class InstitutionalInformationTestCase(TestCase):
     
     def test_founding_date_check(self):
         self.assertEqual(self.institutional_information.founding_date, '19/02/2010')
+
+
+class AddressTestCase(TestCase):
+    def setUp(self):
+        self.address = Address(
+            street_address = 'Avenida 1º de Maio, 120',
+            neighborhood = 'Kilamba Kiaxi',
+            province = 'Luanda'
+        )
+    
+    def test_street_address_check(self):
+        self.assertEqual(self.address.street_address, 'Avenida 1º de Maio, 120')
+
+    def test_neighborhood_check(self):
+        self.assertEqual(self.address.neighborhood, 'Kilamba Kiaxi')
+    
+    def test_province_chekc(self):
+        self.assertEqual(self.address.province, 'Luanda')
