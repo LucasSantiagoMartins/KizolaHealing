@@ -2,7 +2,8 @@ from django.test import TestCase
 from health.models import (
     InstitutionalInformation,
     ContactInformation,
-    Address
+    Address,
+    Phone
 )
 
 
@@ -66,3 +67,16 @@ class ContactInformationTest(TestCase):
             'https://kizolahealing.com'
         )
         
+class PhoneTest(TestCase):
+    def setUp(self):
+        self.phone = Phone(
+            phone_type = 'TFP',
+            number= '834729573'
+        )
+    
+    def test_phone_check(self):
+        self.assertEqual(self.phone.phone_type, 'TFP')
+    
+    def test_number_check(self):
+        self.assertEqual(self.phone.number, '834729573')
+    
