@@ -28,7 +28,7 @@ class InstitutionalInformationTest(TestCase):
         self.assertEqual(self.institutional_information.founding_date, '19/02/2010')
 
 
-class AddressTestCase(TestCase):
+class AddressTest(TestCase):
     def setUp(self):
         self.address = Address(
             street_address = 'Avenida 1º de Maio, 120',
