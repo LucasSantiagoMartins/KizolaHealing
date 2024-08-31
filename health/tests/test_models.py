@@ -7,6 +7,7 @@ from health.models import (
 )
 
 
+#   ===== Unit tests =====
 class InstitutionalInformationTest(TestCase):
     def setUp(self):
         self.institutional_information = InstitutionalInformation(
