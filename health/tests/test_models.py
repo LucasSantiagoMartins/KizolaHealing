@@ -3,6 +3,7 @@ from health.models import (
     InstitutionalInformation,
     ContactInformation,
     PolicyInformation,
+    LicenseDocument,
     Address,
     License,
     Phone
@@ -203,3 +204,17 @@ class LicenseTest(TestCase):
     
     def test_scope_check(self):
         self.assertEqual(self.license.scope, 'scope_test')
+
+
+class LicenseDocumentTest(TestCase):
+    def setUp(self):
+        self.license_document = LicenseDocument(
+            file = 'license_doc_image_test.jpeg',
+            description = 'description_test'
+        )
+    
+    def test_file_check(self):
+        self.assertEqual(self.license_document.file, 'license_doc_image_test.jpeg')
+
+    def tst_description_check(self):
+        self.assertEqual(self.license_document.description, 'description_test')
