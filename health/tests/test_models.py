@@ -4,6 +4,7 @@ from health.models import (
     ContactInformation,
     PolicyInformation,
     Address,
+    License,
     Phone
 )
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -161,4 +162,44 @@ class PolicyInformationTest(TestCase):
         # delete test document file
         os.remove(document_path)
 
+
+class LicenseTest(TestCase):
+    def setUp(self):
+        self.license = License(
+            license_title = 'LCF',
+            license_number = '12345678910',
+            license_status = 'ATV',
+            issue_date = '2000-03-20',
+            expiration_date = '2005-03-10',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2003-02-20',
+            scope = 'scope_test'
+        )
     
+    def test_license_title_check(self):
+        self.assertEqual(self.license.license_title, 'LCF')
+    
+    def test_license_number_check(self):
+        self.assertEqual(self.license.license_number, '12345678910')
+    
+    def test_license_status_check(self):
+        self.assertEqual(self.license.license_status, 'ATV')
+
+    def test_issue_date_check(self):
+        self.assertEqual(self.license.issue_date, '2000-03-20')
+    
+    def test_expiration_date_check(self):
+        self.assertEqual(self.license.expiration_date, '2005-03-10')
+
+    def test_issuing_authority_check(self):
+        self.assertEqual(self.license.issuing_authority, 'issuing_authority_test')
+    
+    def test_renewal_required_check(self):
+        self.assertTrue(self.license.renewal_required)
+
+    def test_renewal_date_check(self):
+        self.assertEqual(self.license.renewal_date, '2003-02-20')
+    
+    def test_scope_check(self):
+        self.assertEqual(self.license.scope, 'scope_test')
