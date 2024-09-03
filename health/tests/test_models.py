@@ -1,12 +1,17 @@
-from django.test import TestCase
 from health.models import (
     AdministrativeInformation,
     InstitutionalInformation,
     ContactInformation,
+    PolicyInformation,
     Address,
     Phone
 )
-
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase
+from django.conf import settings
+from io import BytesIO
+from PIL import Image
+import os
 
 #   ===== Unit tests =====
 class InstitutionalInformationTest(TestCase):
@@ -115,5 +120,45 @@ class AdministrativeInformationTest(TestCase):
             self.administrative_information.responsible_person_phone,
             '936583451'
         )
+
+class PolicyInformationTest(TestCase):
+    def setUp(self):
+        self.policy_information = PolicyInformation(
+            title = 'PPD',
+            description = 'description test',
+            implementation_date = "2000-02-10",
+            last_review_date = "2005-03-20",
+        )
+
+    def test_title_check(self):
+        self.assertEqual(self.policy_information.title, 'PPD')
+
+    def test_description_check(self):
+        self.assertEqual(self.policy_information.description, 'description test')
+    
+    def test_implmentation_date_check(self):
+        self.assertEqual(self.policy_information.implementation_date, '2000-02-10')
+    
+    def test_last_review_date_check(self):
+        self.assertEqual(self.policy_information.last_review_date, '2005-03-20')
+    
+    def test_document_check(self):
+        image = Image.new('RGB', (100, 100), color='blue')
+        image_io = BytesIO()
+        image.save(image_io, format='JPEG')
+        image_io.seek(0)
+
+        image_mock = SimpleUploadedFile('test_image.jpeg', image_io.read(), content_type='image/jpeg')
+
+        self.policy_information.document = image_mock
+        self.policy_information.save()
+        
+        self.assertIsInstance(PolicyInformation.objects.get(id=1), PolicyInformation)
+
+        document_path = settings.MEDIA_ROOT + f"/{self.policy_information.document.name}"
+
+        self.assertTrue(os.path.exists(document_path))
+        # delete test document file
+        os.remove(document_path)
 
     
