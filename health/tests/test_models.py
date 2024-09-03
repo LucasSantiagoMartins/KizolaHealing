@@ -216,5 +216,8 @@ class LicenseDocumentTest(TestCase):
     def test_file_check(self):
         self.assertEqual(self.license_document.file, 'license_doc_image_test.jpeg')
 
-    def tst_description_check(self):
+    def test_description_check(self):
         self.assertEqual(self.license_document.description, 'description_test')
+
+
+
