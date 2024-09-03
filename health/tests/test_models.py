@@ -4,11 +4,13 @@ from health.models import (
     ContactInformation,
     PolicyInformation,
     LicenseDocument,
+    Certification,
     Address,
     License,
     Phone
 )
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db import IntegrityError
 from django.test import TestCase
 from django.conf import settings
 from io import BytesIO
@@ -219,5 +221,51 @@ class LicenseDocumentTest(TestCase):
     def test_description_check(self):
         self.assertEqual(self.license_document.description, 'description_test')
 
+class CertificationTest(TestCase):
+    def setUp(self):
+        self.fields = {
+            'certification_title': 'CCI',
+            'certification_number': '12345678910',
+            'certification_status': 'ATV',
+            'issue_date': '2020-10-20',
+            'expiration_date': '2023-10-20',
+            'issuing_authority': 'issuing_authority_test',
+            'renewal_required': True,
+            'renewal_date': '2022-10-20',
+            'scope': 'scope_test'
+        }
+        self.certification = Certification.objects.create(**self.fields)
 
+    def test_certification_title_check(self):
+        self.assertEqual(self.certification.certification_title, 'CCI')
 
+    def test_certification_number_check(self):
+        self.assertEqual(self.certification.certification_number, '12345678910')
+        
+        with self.assertRaises(IntegrityError):
+            # create certification with the same certification_number
+            Certification.objects.create(**self.fields)
+
+    def test_certification_status_check(self):
+        self.assertEqual(self.certification.certification_status, 'ATV')
+    
+    def test_issue_date_check(self):
+        self.assertEqual(self.certification.issue_date, '2020-10-20')
+
+    def test_expiration_date_check(self):
+        self.assertEqual(self.certification.expiration_date, '2023-10-20')
+
+    def test_issuing_authority_check(self):
+        self.assertEqual(self.certification.issuing_authority, 'issuing_authority_test')
+    
+    def test_renewal_required_check(self):
+        self.assertTrue(self.certification.renewal_required)
+        
+    def test_renewal_date_check(self):
+        self.assertEqual(self.certification.renewal_date, '2022-10-20')
+    
+    def test_renewal_date_check(self):
+        self.assertEqual(self.certification.renewal_date, '2022-10-20')
+    
+    def test_scope_check(self):
+        self.assertEqual(self.certification.scope, 'scope_test')
