@@ -18,7 +18,6 @@ from io import BytesIO
 from PIL import Image
 import os
 
-#   ===== Unit tests =====
 class InstitutionalInformationTest(TestCase):
     def setUp(self):
         self.institutional_information = InstitutionalInformation(
@@ -280,4 +279,3 @@ class CertificationDocumentTest(TestCase):
     
     def test_description_test_check(self):
         self.assertEqual(self.certification_document.description, 'description_test')
-
