@@ -1,6 +1,7 @@
 from health.models import (
     AdministrativeInformation,
     InstitutionalInformation,
+    CertificationDocument,
     ContactInformation,
     PolicyInformation,
     LicenseDocument,
@@ -269,3 +270,14 @@ class CertificationTest(TestCase):
     
     def test_scope_check(self):
         self.assertEqual(self.certification.scope, 'scope_test')
+    
+
+class CertificationDocumentTest(TestCase):
+    def setUp(self):
+        self.certification_document = CertificationDocument(
+            description='description_test'
+        )
+    
+    def test_description_test_check(self):
+        self.assertEqual(self.certification_document.description, 'description_test')
+
