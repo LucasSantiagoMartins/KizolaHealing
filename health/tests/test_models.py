@@ -90,7 +90,7 @@ class PhoneTest(TestCase):
             number = '834729573',
             contact_information = self.contact_information
         )
-        
+
     def test_phone_contact_information_relationship(self):
         self.assertEqual(self.phone.contact_information.email, 'kizolahealing@test.com')
 
@@ -103,7 +103,7 @@ class PhoneTest(TestCase):
 
 class AdministrativeInformationTest(TestCase):
     def setUp(self):
-        self.administrative_information = AdministrativeInformation(
+        self.administrative_information = AdministrativeInformation.objects.create(
             responsible_person_name = 'John doe',
             responsible_person_nif = '033485838LA049',
             responsible_person_email = 'johndoe@gmail.com',
