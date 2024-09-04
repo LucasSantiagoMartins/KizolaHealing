@@ -43,7 +43,7 @@ class InstitutionalInformationTest(TestCase):
 
 class AddressTest(TestCase):
     def setUp(self):
-        self.address = Address(
+        self.address = Address.objects.create(
             street_address = 'Avenida 1º de Maio, 120',
             neighborhood = 'Kilamba Kiaxi',
             province = 'Luanda'
