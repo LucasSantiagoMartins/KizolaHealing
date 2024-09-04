@@ -219,13 +219,39 @@ class LicenseTest(TestCase):
 
 class LicenseDocumentTest(TestCase):
     def setUp(self):
-        self.license_document = LicenseDocument(
-            file = 'license_doc_image_test.jpeg',
+        file = Image.new('RGB', (100, 100), color='blue')
+        file_io = BytesIO()
+        file.save(file_io, format='JPEG')
+        file_io.seek(0)
+        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+
+        self.related_license = License.objects.create(
+            license_title = 'LCF',
+            license_number = '12345678910',
+            license_status = 'ATV',
+            issue_date = '2000-03-20',
+            expiration_date = '2005-03-10',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2003-02-20',
+            scope = 'scope_test'
+        )
+
+        self.license_document = LicenseDocument.objects.create(
+            related_license = self.related_license,
+            file = file_mock,
             description = 'description_test'
         )
     
-    def test_file_check(self):
-        self.assertEqual(self.license_document.file, 'license_doc_image_test.jpeg')
+    def test_license_document_license_relationship(self):
+        self.assertEqual(self.license_document.related_license.license_title, 'LCF')
+
+    def test_license_document_uploads_document_successfully(self):
+        document_path = settings.MEDIA_ROOT + f"/{self.license_document.file.name}"
+
+        self.assertTrue(os.path.exists(document_path))
+        # delete test document file
+        os.remove(document_path)
 
     def test_description_check(self):
         self.assertEqual(self.license_document.description, 'description_test')
