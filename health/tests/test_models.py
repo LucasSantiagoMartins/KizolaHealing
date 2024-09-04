@@ -2,9 +2,12 @@ from health.models import (
     AdministrativeInformation,
     InstitutionalInformation,
     CertificationDocument,
+    OperationInformation,
     ContactInformation,
     PolicyInformation,
     LicenseDocument,
+    ServiceOffered,
+    OperatingShift,
     Certification,
     Address,
     License,
@@ -372,6 +375,37 @@ class CertificationDocumentTest(TestCase):
         self.assertTrue(os.path.exists(document_path))
         # delete test document file
         os.remove(document_path)
-        
+
     def test_description_test_check(self):
         self.assertEqual(self.certification_document.description, 'description_test')
+
+
+class OperationShiftTest(TestCase):
+    def setUp(self):
+        self.service_offered = ServiceOffered.objects.create(
+            service_name = 'CTM',
+            description = 'description_test'
+        )
+
+        self.operation_information = OperationInformation.objects.create()
+        self.operation_information.services_offered.add(self.service_offered)
+        self.operation_information.save()
+
+        self.operating_shift = OperatingShift.objects.create(
+            shift_type = 'TND',
+            begin_hour = '16h',
+            end_hour = '22h',
+            operation_information = self.operation_information
+        )
+
+    def test_relationship_with_operation_information(self):
+        self.assertEqual(self.operating_shift.operation_information.id, 1)
+
+    def test_shift_type_check(self):
+        self.assertEqual(self.operating_shift.shift_type, 'TND')
+    
+    def test_begin_hour_check(self):
+        self.assertEqual(self.operating_shift.begin_hour, '16h')
+    
+    def test_end_hour_check(self):
+        self.assertEqual(self.operating_shift.end_hour, '22h')
