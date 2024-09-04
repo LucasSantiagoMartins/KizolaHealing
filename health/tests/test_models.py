@@ -136,7 +136,7 @@ class AdministrativeInformationTest(TestCase):
 
 class PolicyInformationTest(TestCase):
     def setUp(self):
-        self.policy_information = PolicyInformation(
+        self.policy_information = PolicyInformation.objects.create(
             title = 'PPD',
             description = 'description test',
             implementation_date = "2000-02-10",
