@@ -284,7 +284,23 @@ class CertificationTest(TestCase):
             'renewal_date': '2022-10-20',
             'scope': 'scope_test'
         }
+        
         self.certification = Certification.objects.create(**self.fields)
+
+        file = Image.new('RGB', (100, 100), color='blue')
+        file_io = BytesIO()
+        file.save(file_io, format='JPEG')
+        file_io.seek(0)
+        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+
+        self.certification_document = CertificationDocument.objects.create(
+            related_certification = self.certification,
+            file = file_mock,
+            description = 'description_test'
+        )
+
+    def test_reverse_relationship_with_certification_document(self):
+        self.assertEqual(self.certification.documents.all().count(), 1)
 
     def test_certification_title_check(self):
         self.assertEqual(self.certification.certification_title, 'CCI')
