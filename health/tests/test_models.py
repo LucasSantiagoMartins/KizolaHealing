@@ -20,14 +20,14 @@ import os
 
 class InstitutionalInformationTest(TestCase):
     def setUp(self):
-        self.institutional_information = InstitutionalInformation(
+        self.institutional_information = InstitutionalInformation.objects.create(
             institution_name = 'Hospital-test',
             # This nif is random
             nif = '5401137796',
             institution_type = 'HPG',
-            founding_date = '19/02/2010'
+            founding_date = '2010-02-19'
         )
-
+   
     def test_institution_name_check(self):
         self.assertEqual(self.institutional_information.institution_name, 'Hospital-test')
     
@@ -38,7 +38,7 @@ class InstitutionalInformationTest(TestCase):
         self.assertEqual(self.institutional_information.institution_type, 'HPG')
     
     def test_founding_date_check(self):
-        self.assertEqual(self.institutional_information.founding_date, '19/02/2010')
+        self.assertEqual(self.institutional_information.founding_date, '2010-02-19')
 
 
 class AddressTest(TestCase):
