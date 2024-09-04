@@ -90,7 +90,10 @@ class PhoneTest(TestCase):
             number = '834729573',
             contact_information = self.contact_information
         )
-    
+        
+    def test_phone_contact_information_relationship(self):
+        self.assertEqual(self.phone.contact_information.email, 'kizolahealing@test.com')
+
     def test_phone_check(self):
         self.assertEqual(self.phone.phone_type, 'TFP')
     
