@@ -339,9 +339,39 @@ class CertificationTest(TestCase):
 
 class CertificationDocumentTest(TestCase):
     def setUp(self):
-        self.certification_document = CertificationDocument(
-            description='description_test'
+        self.certification = Certification.objects.create(
+            certification_title = 'CCI',
+            certification_number = '12345678910',
+            certification_status = 'ATV',
+            issue_date = '2020-10-20',
+            expiration_date = '2023-10-20',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2022-10-20',
+            scope = 'scope_test'
         )
-    
+
+        file = Image.new('RGB', (100, 100), color='blue')
+        file_io = BytesIO()
+        file.save(file_io, format='JPEG')
+        file_io.seek(0)
+        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+
+        self.certification_document = CertificationDocument.objects.create(
+            related_certification = self.certification,
+            file = file_mock,
+            description = 'description_test'
+        )
+
+    def test_relationship_with_certification_document(self):
+        self.assertEqual(self.certification_document.related_certification.certification_title, 'CCI')
+
+    def test_certification_document_uploads_document_successfully(self):
+        document_path = settings.MEDIA_ROOT + f"/{self.certification_document.file.name}"
+
+        self.assertTrue(os.path.exists(document_path))
+        # delete test document file
+        os.remove(document_path)
+        
     def test_description_test_check(self):
         self.assertEqual(self.certification_document.description, 'description_test')
