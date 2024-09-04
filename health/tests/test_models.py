@@ -80,9 +80,15 @@ class ContactInformationTest(TestCase):
         
 class PhoneTest(TestCase):
     def setUp(self):
-        self.phone = Phone(
+        self.contact_information = ContactInformation.objects.create(
+            email = 'kizolahealing@test.com',
+            website = 'https://kizolahealing.com'
+        )
+
+        self.phone = Phone.objects.create(
             phone_type = 'TFP',
-            number= '834729573'
+            number = '834729573',
+            contact_information = self.contact_information
         )
     
     def test_phone_check(self):
