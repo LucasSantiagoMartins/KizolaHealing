@@ -122,7 +122,7 @@ class LicenseDocument(models.Model):
 
 
     def __str__(self):
-        return f"{self.license.license_title}"
+        return f"{self.file.name}"
 
 
 class Certification(models.Model):
