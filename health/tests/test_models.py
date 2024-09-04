@@ -177,6 +177,12 @@ class PolicyInformationTest(TestCase):
 
 class LicenseTest(TestCase):
     def setUp(self):
+        file = Image.new('RGB', (100, 100), color='blue')
+        file_io = BytesIO()
+        file.save(file_io, format='JPEG')
+        file_io.seek(0)
+        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+    
         self.license = License.objects.create(
             license_title = 'LCF',
             license_number = '12345678910',
@@ -188,6 +194,15 @@ class LicenseTest(TestCase):
             renewal_date = '2003-02-20',
             scope = 'scope_test'
         )
+        
+        self.license_document = LicenseDocument.objects.create(
+            related_license = self.license,
+            file = file_mock,
+            description = 'description_test'
+        )
+
+    def test_reverse_relationship_with_license_document(self):
+        self.assertEqual(self.license.documents.all().count(), 1)
     
     def test_license_title_check(self):
         self.assertEqual(self.license.license_title, 'LCF')
