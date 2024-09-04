@@ -61,7 +61,7 @@ class AddressTest(TestCase):
 
 class ContactInformationTest(TestCase):
     def setUp(self):
-        self.contact_information = ContactInformation(
+        self.contact_information = ContactInformation.objects.create(
             email = 'kizolahealing@test.com',
             website = 'https://kizolahealing.com'
         )
