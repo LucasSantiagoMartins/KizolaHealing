@@ -97,7 +97,7 @@ class OperationInformation(models.Model):
     # related_name='operating_hours', from OperatingHour model
 
     def __str__(self):
-        return f"Open from {self.opening_hours} until {self.closing_hours}"
+        return self.operating_hours.all()
 
 class License(models.Model):
     license_title = models.CharField(max_length=3, choices=LICENSE_TITLE_CHOICES)
