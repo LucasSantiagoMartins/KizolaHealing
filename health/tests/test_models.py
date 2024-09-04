@@ -177,7 +177,7 @@ class PolicyInformationTest(TestCase):
 
 class LicenseTest(TestCase):
     def setUp(self):
-        self.license = License(
+        self.license = License.objects.create(
             license_title = 'LCF',
             license_number = '12345678910',
             license_status = 'ATV',
