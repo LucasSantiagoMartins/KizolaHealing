@@ -399,6 +399,9 @@ class OperationShiftTest(TestCase):
             operation_information = self.operation_information
         )
 
+    def test_duration_property_returns_correct_string(self):
+        self.assertEqual(self.operating_shift.duration, 'Das 16:00 às 22:00.')
+
     def test_relationship_with_operation_information(self):
         self.assertEqual(self.operating_shift.operation_information.id, 1)
 
@@ -437,7 +440,7 @@ class DutyShiftTest(TestCase):
             end_day = 'DG',
             operation_information = self.operation_information
         )
-        
+
     def test_str_method_returns_correct_string(self):
         self.assertEqual(str(self.duty_shift), 'Sábado à Domingo: Das 16:00 às 22:00.')
 
