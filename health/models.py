@@ -173,7 +173,12 @@ class DutyShift(models.Model):
 
 
     def __str__(self):
-        return f"{self.begin_day} à {self.end_day}: {self.operating_shift.duration}"
+        readable_form_days = {
+            'begin_day': [day[1] for day in WEEK_DAYS_CHOICES if day[0] == self.begin_day][0],
+            'end_day': [day[1] for day in WEEK_DAYS_CHOICES if day[0] == self.end_day][0],
+        }
+        
+        return f"{readable_form_days['begin_day']} à {readable_form_days['end_day']}: {self.operating_shift.duration}"
 
 class OperatingHour(models.Model):
     operating_hour = models.CharField(max_length=3, choices=OPERATING_HOURS_CHOICES)
