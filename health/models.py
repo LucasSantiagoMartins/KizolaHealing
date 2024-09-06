@@ -157,7 +157,7 @@ class OperatingShift(models.Model):
     operation_information = models.ForeignKey(OperationInformation, related_name='operating_shifts', on_delete=models.CASCADE)
 
     @property
-    def J(self):
+    def duration(self):
         readable_form_hours = {
             'begin_hour': get_readable_form_of_choice(HOURS_CHOICES, self.begin_hour),
             'end_hour': get_readable_form_of_choice(HOURS_CHOICES, self.end_hour)
@@ -180,8 +180,8 @@ class DutyShift(models.Model):
 
     def __str__(self):
         readable_form_days = {
-            'begin_day': [day[1] for day in WEEK_DAYS_CHOICES if day[0] == self.begin_day][0],
-            'end_day': [day[1] for day in WEEK_DAYS_CHOICES if day[0] == self.end_day][0],
+            'begin_day': get_readable_form_of_choice(WEEK_DAYS_CHOICES, self.begin_day),
+            'end_day': get_readable_form_of_choice(WEEK_DAYS_CHOICES, self.end_day)
         }
 
         return f"{readable_form_days['begin_day']} à {readable_form_days['end_day']}: {self.operating_shift.duration}"
