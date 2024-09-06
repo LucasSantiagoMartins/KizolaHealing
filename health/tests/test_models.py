@@ -9,6 +9,7 @@ from health.models import (
     ServiceOffered,
     OperatingShift,
     Certification,
+    DutyShift,
     Address,
     License,
     Phone
@@ -409,3 +410,48 @@ class OperationShiftTest(TestCase):
     
     def test_end_hour_check(self):
         self.assertEqual(self.operating_shift.end_hour, '22h')
+
+class DutyShiftTest(TestCase):
+    def setUp(self):
+        self.service_offered = ServiceOffered.objects.create(
+            service_name = 'CTM',
+            description = 'description_test'
+        )
+
+        self.operation_information = OperationInformation.objects.create()
+        self.operation_information.services_offered.add(self.service_offered)
+        self.operation_information.save()
+
+        self.operating_shift = OperatingShift.objects.create(
+            shift_type = 'TND',
+            begin_hour = '16h',
+            end_hour = '22h',
+            operation_information = self.operation_information
+        )
+
+        self.duty_shift = DutyShift.objects.create(
+            name = 'duty shift A',
+            operating_shift = self.operating_shift,
+            description = 'description_test',
+            begin_day = 'SD',
+            end_day = 'DG',
+            operation_information = self.operation_information
+        )
+    
+    def test_name_check(self):
+        self.assertEqual(self.duty_shift.name, 'duty shift A')
+    
+    def test_description_check(self):
+        self.assertEqual(self.duty_shift.description, 'description_test')
+
+    def test_begin_day_check(self):
+        self.assertEqual(self.duty_shift.begin_day, 'SD')
+    
+    def test_end_day(self):
+        self.assertEqual(self.duty_shift.end_day, 'DG')
+    
+    def test_operation_information_relationship(self):
+        self.assertEqual(self.duty_shift.operation_information.id, 1)
+    
+    def test_operating_shift_relationship(self):
+        self.assertEqual(self.duty_shift.operating_shift.id, 1)
