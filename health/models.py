@@ -169,7 +169,6 @@ class DutyShift(models.Model):
     description = models.TextField()
     begin_day = models.CharField(max_length=2, choices=WEEK_DAYS_CHOICES)
     end_day = models.CharField(max_length=2, choices=WEEK_DAYS_CHOICES)
-    location = models.CharField(max_length=50)
     operation_information = models.ForeignKey(OperationInformation, related_name='duty_shifts', on_delete=models.CASCADE)
 
 
