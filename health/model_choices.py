@@ -178,7 +178,7 @@ SHIFT_TYPE_CHOICES = (
 )
 
 WEEK_DAYS_CHOICES = (
-    ('SD', 'Segunda-feira'),
+    ('SF', 'Segunda-feira'),
     ('TÇ', 'Terça-feira'),
     ('QR', 'Quarta-feira'),
     ('QT', 'Quinta-feira'),
