@@ -437,7 +437,10 @@ class DutyShiftTest(TestCase):
             end_day = 'DG',
             operation_information = self.operation_information
         )
-    
+        
+    def test_str_method_returns_correct_string(self):
+        self.assertEqual(str(self.duty_shift), 'Sábado à Domingo: Das 16:00 às 22:00.')
+
     def test_name_check(self):
         self.assertEqual(self.duty_shift.name, 'duty shift A')
     
