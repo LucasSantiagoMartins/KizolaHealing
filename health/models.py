@@ -157,7 +157,12 @@ class OperatingShift(models.Model):
 
     @property
     def duration(self):
-        return f"Das {self.begin_hour} às {self.end_hour}."
+        readable_form_hours = {
+            'begin_hour': [hour[1] for hour in HOURS_CHOICES if hour[0] == self.begin_hour][0],
+            'end_hour': [hour[1] for hour in HOURS_CHOICES if hour[0] == self.end_hour][0],
+        }
+         
+        return f"Das {readable_form_hours['begin_hour']} às {readable_form_hours['end_hour']}."
 
     def __str__(self):
         return self.shift_type
@@ -177,7 +182,7 @@ class DutyShift(models.Model):
             'begin_day': [day[1] for day in WEEK_DAYS_CHOICES if day[0] == self.begin_day][0],
             'end_day': [day[1] for day in WEEK_DAYS_CHOICES if day[0] == self.end_day][0],
         }
-        
+
         return f"{readable_form_days['begin_day']} à {readable_form_days['end_day']}: {self.operating_shift.duration}"
 
 class OperatingHour(models.Model):
