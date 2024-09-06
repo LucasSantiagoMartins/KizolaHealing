@@ -12,6 +12,7 @@ from .model_choices import (
     WEEK_DAYS_CHOICES,
     OPERATING_HOURS_CHOICES
 )
+from .utils import get_readable_form_of_choice
 
 class Institution(models.Model):
     institutional_informations = models.OneToOneField('InstitutionalInformation', on_delete=models.PROTECT)
@@ -156,10 +157,10 @@ class OperatingShift(models.Model):
     operation_information = models.ForeignKey(OperationInformation, related_name='operating_shifts', on_delete=models.CASCADE)
 
     @property
-    def duration(self):
+    def J(self):
         readable_form_hours = {
-            'begin_hour': [hour[1] for hour in HOURS_CHOICES if hour[0] == self.begin_hour][0],
-            'end_hour': [hour[1] for hour in HOURS_CHOICES if hour[0] == self.end_hour][0],
+            'begin_hour': get_readable_form_of_choice(HOURS_CHOICES, self.begin_hour),
+            'end_hour': get_readable_form_of_choice(HOURS_CHOICES, self.end_hour)
         }
          
         return f"Das {readable_form_hours['begin_hour']} às {readable_form_hours['end_hour']}."
