@@ -195,4 +195,11 @@ class OperatingHour(models.Model):
     operation_information = models.ForeignKey(OperationInformation, related_name='operating_hours', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.begin_day} à {self.end_day}: {self.begin_hour}-{self.end_hour}"
+        readable_form_days_and_hours = {
+            'begin_day': get_readable_form_of_choice(WEEK_DAYS_CHOICES, self.begin_day),
+            'end_day': get_readable_form_of_choice(WEEK_DAYS_CHOICES, self.end_day),
+            'begin_hour': get_readable_form_of_choice(HOURS_CHOICES, self.begin_hour),
+            'end_hour': get_readable_form_of_choice(HOURS_CHOICES, self.end_hour)
+        }
+
+        return f"{readable_form_days_and_hours['begin_day']} à {readable_form_days_and_hours['end_day']}: {readable_form_days_and_hours['begin_hour']} às {readable_form_days_and_hours['end_hour']}."
