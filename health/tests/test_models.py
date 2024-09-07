@@ -22,6 +22,7 @@ from django.conf import settings
 from io import BytesIO
 from PIL import Image
 import os
+from .file_handler import FileMock
 
 class InstitutionalInformationTest(TestCase):
     def setUp(self):
@@ -161,23 +162,20 @@ class PolicyInformationTest(TestCase):
         self.assertEqual(self.policy_information.last_review_date, '2005-03-20')
     
     def test_document_check(self):
-        image = Image.new('RGB', (100, 100), color='blue')
-        image_io = BytesIO()
-        image.save(image_io, format='JPEG')
-        image_io.seek(0)
+        
 
-        image_mock = SimpleUploadedFile('test_image.jpeg', image_io.read(), content_type='image/jpeg')
+        image_mock = FileMock().create()
 
         self.policy_information.document = image_mock
         self.policy_information.save()
         
         self.assertIsInstance(PolicyInformation.objects.get(id=1), PolicyInformation)
 
-        document_path = settings.MEDIA_ROOT + f"/{self.policy_information.document.name}"
-
-        self.assertTrue(os.path.exists(document_path))
+        image_path = FileMock().get_file_path(self.policy_information.document.name)
+        
+        self.assertTrue(os.path.exists(image_path))
         # delete test document file
-        os.remove(document_path)
+        FileMock().delete(image_path)
 
 
 class LicenseTest(TestCase):
