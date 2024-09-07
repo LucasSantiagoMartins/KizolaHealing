@@ -238,11 +238,7 @@ class LicenseTest(TestCase):
 
 class LicenseDocumentTest(TestCase):
     def setUp(self):
-        file = Image.new('RGB', (100, 100), color='blue')
-        file_io = BytesIO()
-        file.save(file_io, format='JPEG')
-        file_io.seek(0)
-        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+        image_mock = FileMock.create()
 
         self.related_license = License.objects.create(
             license_title = 'LCF',
@@ -258,7 +254,7 @@ class LicenseDocumentTest(TestCase):
 
         self.license_document = LicenseDocument.objects.create(
             related_license = self.related_license,
-            file = file_mock,
+            file = image_mock,
             description = 'description_test'
         )
     
@@ -266,11 +262,10 @@ class LicenseDocumentTest(TestCase):
         self.assertEqual(self.license_document.related_license.license_title, 'LCF')
 
     def test_license_document_uploads_document_successfully(self):
-        document_path = settings.MEDIA_ROOT + f"/{self.license_document.file.name}"
-
-        self.assertTrue(os.path.exists(document_path))
+        image_path = FileMock.get_file_path(self.license_document.file.name)
+        self.assertTrue(os.path.exists(image_path))
         # delete test document file
-        os.remove(document_path)
+        FileMock.delete(image_path)
 
     def test_description_check(self):
         self.assertEqual(self.license_document.description, 'description_test')
