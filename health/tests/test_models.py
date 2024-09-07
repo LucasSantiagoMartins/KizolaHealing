@@ -286,15 +286,12 @@ class CertificationTest(TestCase):
         
         self.certification = Certification.objects.create(**self.fields)
 
-        file = Image.new('RGB', (100, 100), color='blue')
-        file_io = BytesIO()
-        file.save(file_io, format='JPEG')
-        file_io.seek(0)
-        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+        
+        image_mock = FileMock.create()
 
         self.certification_document = CertificationDocument.objects.create(
             related_certification = self.certification,
-            file = file_mock,
+            file = image_mock,
             description = 'description_test'
         )
 
