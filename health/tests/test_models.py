@@ -332,6 +332,12 @@ class CertificationTest(TestCase):
     def test_scope_check(self):
         self.assertEqual(self.certification.scope, 'scope_test')
     
+    def test_certification_document_uploads_document_successfully(self):
+        image_path = FileMock.get_file_path(self.certification_document.file.name)
+
+        self.assertTrue(os.path.exists(image_path))
+        
+        FileMock.delete(image_path)
 
 class CertificationDocumentTest(TestCase):
     def setUp(self):
