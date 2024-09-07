@@ -9,6 +9,7 @@ from health.models import (
     ServiceOffered,
     OperatingShift,
     Certification,
+    OperatingHour,
     DutyShift,
     Address,
     License,
@@ -414,6 +415,7 @@ class OperationShiftTest(TestCase):
     def test_end_hour_check(self):
         self.assertEqual(self.operating_shift.end_hour, '22h')
 
+
 class DutyShiftTest(TestCase):
     def setUp(self):
         self.service_offered = ServiceOffered.objects.create(
@@ -461,3 +463,42 @@ class DutyShiftTest(TestCase):
     
     def test_operating_shift_relationship(self):
         self.assertEqual(self.duty_shift.operating_shift.id, 1)
+
+class OperatingHourTest(TestCase):
+    def setUp(self):
+        self.service_offered = ServiceOffered.objects.create(
+            service_name = 'CTM',
+            description = 'description_test'
+        )
+
+        self.operation_information = OperationInformation.objects.create()
+        self.operation_information.services_offered.add(self.service_offered)
+        self.operation_information.save()
+    
+        self.operating_hour = OperatingHour.objects.create(
+            operating_hour = 'HMP',
+            begin_day = 'SF',
+            end_day = 'DG',
+            begin_hour = '10h',
+            end_hour = '22h',
+            operation_information = self.operation_information,
+            
+        )
+    
+    def test_operating_hour_check(self):
+        self.assertEqual(self.operating_hour.operating_hour, 'HMP')
+    
+    def test_begin_day_check(self):
+        self.assertEqual(self.operating_hour.begin_day, 'SF')
+    
+    def test_end_day_check(self):
+        self.assertEqual(self.operating_hour.end_day, 'DG')
+    
+    def test_begin_hour_check(self):
+        self.assertEqual(self.operating_hour.begin_hour, '10h')
+    
+    def test_end_hour_check(self):
+        self.assertEqual(self.operating_hour.end_hour, '22h')
+    
+    def test_operation_information_relationship(self):
+        self.assertIsInstance(self.operating_hour.operation_information, OperationInformation)
