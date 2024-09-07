@@ -230,7 +230,7 @@ class LicenseTest(TestCase):
     def test_scope_check(self):
         self.assertEqual(self.license.scope, 'scope_test')
 
-    def test_upload_file(self):
+    def test_license_document_uploads_document_successfully(self):
         image_path = FileMock.get_file_path(self.license_document.file.name)
         self.assertTrue(os.path.exists(image_path))
         # delete test document file
