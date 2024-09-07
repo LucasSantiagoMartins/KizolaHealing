@@ -502,3 +502,53 @@ class OperatingHourTest(TestCase):
     
     def test_operation_information_relationship(self):
         self.assertIsInstance(self.operating_hour.operation_information, OperationInformation)
+
+
+class OperationInformationTest(TestCase):
+    def setUp(self):
+        self.service_offered = ServiceOffered.objects.create(
+            service_name = 'CTM',
+            description = 'description_test'
+        )
+
+        self.operation_information = OperationInformation.objects.create()
+        self.operation_information.services_offered.add(self.service_offered)
+        self.operation_information.save()
+
+        self.operating_hour = OperatingHour.objects.create(
+            operating_hour = 'HMP',
+            begin_day = 'SF',
+            end_day = 'DG',
+            begin_hour = '10h',
+            end_hour = '22h',
+            operation_information = self.operation_information,
+            
+        )
+
+        self.operating_shift = OperatingShift.objects.create(
+            shift_type = 'TND',
+            begin_hour = '16h',
+            end_hour = '22h',
+            operation_information = self.operation_information
+        )
+
+        self.duty_shift = DutyShift.objects.create(
+            name = 'duty shift A',
+            operating_shift = self.operating_shift,
+            description = 'description_test',
+            begin_day = 'SD',
+            end_day = 'DG',
+            operation_information = self.operation_information
+        )
+    
+    def test_services_offered_relationship(self):
+        self.assertEqual(self.operation_information.services_offered.all().count(), 1)
+    
+    def test_reverse_realationship_with_operating_shift(self):
+        self.assertEqual(self.operation_information.operating_shifts.all().count(), 1)
+
+    def test_reverse_realationship_with_duty_shift(self):
+        self.assertEqual(self.operation_information.duty_shifts.all().count(), 1)
+
+    def test_reverse_realationship_with_operating_hour(self):
+        self.assertEqual(self.operation_information.operating_hours.all().count(), 1)
