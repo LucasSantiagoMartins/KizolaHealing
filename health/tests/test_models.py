@@ -179,11 +179,8 @@ class PolicyInformationTest(TestCase):
 
 class LicenseTest(TestCase):
     def setUp(self):
-        file = Image.new('RGB', (100, 100), color='blue')
-        file_io = BytesIO()
-        file.save(file_io, format='JPEG')
-        file_io.seek(0)
-        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+        
+        image_mock = FileMock.create()
     
         self.license = License.objects.create(
             license_title = 'LCF',
@@ -199,7 +196,7 @@ class LicenseTest(TestCase):
         
         self.license_document = LicenseDocument.objects.create(
             related_license = self.license,
-            file = file_mock,
+            file = image_mock,
             description = 'description_test'
         )
 
@@ -233,6 +230,11 @@ class LicenseTest(TestCase):
     def test_scope_check(self):
         self.assertEqual(self.license.scope, 'scope_test')
 
+    def test_upload_file(self):
+        image_path = FileMock.get_file_path(self.license_document.file.name)
+        self.assertTrue(os.path.exists(image_path))
+        # delete test document file
+        FileMock.delete(image_path)
 
 class LicenseDocumentTest(TestCase):
     def setUp(self):
