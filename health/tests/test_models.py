@@ -162,20 +162,19 @@ class PolicyInformationTest(TestCase):
         self.assertEqual(self.policy_information.last_review_date, '2005-03-20')
     
     def test_document_check(self):
-        
-
-        image_mock = FileMock().create()
+    
+        image_mock = FileMock.create()
 
         self.policy_information.document = image_mock
         self.policy_information.save()
         
         self.assertIsInstance(PolicyInformation.objects.get(id=1), PolicyInformation)
 
-        image_path = FileMock().get_file_path(self.policy_information.document.name)
+        image_path = FileMock.get_file_path(self.policy_information.document.name)
         
         self.assertTrue(os.path.exists(image_path))
         # delete test document file
-        FileMock().delete(image_path)
+        FileMock.delete(image_path)
 
 
 class LicenseTest(TestCase):
