@@ -15,14 +15,11 @@ from health.models import (
     License,
     Phone
 )
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import IntegrityError
+from .file_handler import FileMock
 from django.test import TestCase
 from django.conf import settings
-from io import BytesIO
-from PIL import Image
 import os
-from .file_handler import FileMock
 
 class InstitutionalInformationTest(TestCase):
     def setUp(self):
@@ -353,15 +350,11 @@ class CertificationDocumentTest(TestCase):
             scope = 'scope_test'
         )
 
-        file = Image.new('RGB', (100, 100), color='blue')
-        file_io = BytesIO()
-        file.save(file_io, format='JPEG')
-        file_io.seek(0)
-        file_mock = SimpleUploadedFile('doc.jpeg', file_io.read(), content_type='image/jpeg')
+        image_mock = FileMock.create()
 
         self.certification_document = CertificationDocument.objects.create(
             related_certification = self.certification,
-            file = file_mock,
+            file = image_mock,
             description = 'description_test'
         )
 
@@ -369,11 +362,12 @@ class CertificationDocumentTest(TestCase):
         self.assertEqual(self.certification_document.related_certification.certification_title, 'CCI')
 
     def test_certification_document_uploads_document_successfully(self):
-        document_path = settings.MEDIA_ROOT + f"/{self.certification_document.file.name}"
+        image_path = FileMock.get_file_path(self.certification_document.file.name)
 
-        self.assertTrue(os.path.exists(document_path))
+        self.assertTrue(os.path.exists(image_path))
+        
         # delete test document file
-        os.remove(document_path)
+        os.remove(image_path)
 
     def test_description_test_check(self):
         self.assertEqual(self.certification_document.description, 'description_test')
