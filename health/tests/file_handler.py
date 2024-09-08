@@ -1,9 +1,9 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
 from string import ascii_letters
 from django.conf import settings
-import random
 from io import BytesIO
 from PIL import Image
+import random
 import os
 
 
