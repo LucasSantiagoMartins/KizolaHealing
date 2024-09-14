@@ -85,6 +85,7 @@ class PolicyInformation(models.Model):
     implementation_date = models.DateField()
     last_review_date = models.DateField(null=True, blank=True)
     document = models.FileField(upload_to='health/documents/policy_documents/', null=True, blank=True)
+    institution = models.ForeignKey(Institution, related_name='policy_informations', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return dict(POLICY_TITLE_CHOICES).get(self.title, self.title)
