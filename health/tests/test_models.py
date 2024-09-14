@@ -10,6 +10,7 @@ from health.models import (
     OperatingShift,
     Certification,
     OperatingHour,
+    Institution,
     DutyShift,
     Address,
     License,
@@ -20,6 +21,102 @@ from .file_handler import FileMock
 from django.test import TestCase
 from django.conf import settings
 import os
+
+
+class InstitutionTest(TestCase):
+    def setUp(self):
+        self.institutional_information = InstitutionalInformation.objects.create(
+            institution_name = 'Hospital-test',
+            # This nif is random
+            nif = '5401137796',
+            institution_type = 'HPG',
+            founding_date = '2010-02-19'
+        )
+
+        self.address = Address.objects.create(
+            street_address = 'Avenida 1º de Maio, 120',
+            neighborhood = 'Kilamba Kiaxi',
+            province = 'Luanda'
+        )
+
+        self.administrative_information = AdministrativeInformation.objects.create(
+            responsible_person_name = 'John doe',
+            responsible_person_nif = '033485838LA049',
+            responsible_person_email = 'johndoe@gmail.com',
+            responsible_person_phone = '936583451'
+        )
+
+        self.policy_information = PolicyInformation.objects.create(
+            title = 'PPD',
+            description = 'description test',
+            implementation_date = "2000-02-10",
+            last_review_date = "2005-03-20",
+        )
+
+        self.service_offered = ServiceOffered.objects.create(
+            service_name = 'CTM',
+            description = 'description_test'
+        )
+
+        self.operation_information = OperationInformation.objects.create()
+        self.operation_information.services_offered.add(self.service_offered)
+        self.operation_information.save()
+
+        self.license = License.objects.create(
+            license_title = 'LCF',
+            license_number = '12345678910',
+            license_status = 'ATV',
+            issue_date = '2000-03-20',
+            expiration_date = '2005-03-10',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2003-02-20',
+            scope = 'scope_test'
+        )
+
+        self.certification = Certification.objects.create(
+            certification_title = 'CCI',
+            certification_number = '12345678910',
+            certification_status = 'ATV',
+            issue_date = '2020-10-20',
+            expiration_date = '2023-10-20',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2022-10-20',
+            scope = 'scope_test'       
+        )
+
+        self.institution = Institution.objects.create(
+            institutional_informations = self.institutional_information,
+            address = self.address,
+            administrative_informations = self.administrative_information,
+            policy_informations = self.policy_information,
+            operation_informations = self.operation_information,
+            licenses = self.license,
+            certifications = self.certification
+        )
+    
+    def test_institutional_information_relationship(self):
+        self.assertEqual(self.institution.institutional_informations.institution_name, 'Hospital-test')
+        
+    def test_address_relationship(self):
+        self.assertEqual(self.institution.address.street_address, 'Avenida 1º de Maio, 120')
+    
+    def test_administrative_information_relationship(self):
+        self.assertEqual(self.administrative_information.responsible_person_email, 'johndoe@gmail.com')
+
+    def test_policy_information_relationship(self):
+        self.assertEqual(self.policy_information.title, 'PPD')
+    
+    def test_operation_information_relationship(self):
+        self.assertEqual(self.operation_information.id, 1)
+
+    def test_license_relationship(self):
+        self.assertEqual(self.license.license_title, 'LCF')
+
+    def test_certification_relationship(self):
+        self.assertEqual(self.certification.certification_title, 'CCI')
+
 
 class InstitutionalInformationTest(TestCase):
     def setUp(self):
