@@ -109,6 +109,8 @@ class License(models.Model):
     renewal_required = models.BooleanField(default=True)
     renewal_date = models.DateField(null=True, blank=True)
     scope = models.TextField(null=True, blank=True)
+    institution = models.OneToOneField(Institution, related_name='licenses', on_delete=models.DO_NOTHING)
+
     # related_name='documents' from LicenseDocument model
 
     def __str__(self):
