@@ -18,7 +18,6 @@ class Institution(models.Model):
     institutional_informations = models.OneToOneField('InstitutionalInformation', on_delete=models.PROTECT)
     address = models.OneToOneField('Address', on_delete=models.PROTECT)
     administrative_informations = models.OneToOneField('AdministrativeInformation', on_delete=models.PROTECT)
-    policy_informations = models.OneToOneField('PolicyInformation', on_delete=models.PROTECT)
     operation_informations = models.OneToOneField('OperationInformation', on_delete=models.PROTECT)
     licenses = models.OneToOneField('License', on_delete=models.PROTECT)
     certifications = models.OneToOneField('Certification', on_delete=models.PROTECT)
