@@ -21,6 +21,7 @@ class Institution(models.Model):
     operation_informations = models.OneToOneField('OperationInformation', on_delete=models.PROTECT)
     # related_name='policy_informations'
     # related_name='licenses'
+    # related_name='certifications'
 
     def __str__(self):
         return self.institutional_information.institution_name
