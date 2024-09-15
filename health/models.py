@@ -24,7 +24,7 @@ class Institution(models.Model):
     # related_name='certifications'
 
     def __str__(self):
-        return self.institutional_information.institution_name
+        return self.institutional_informations.institution_name
 
 #TODO Consider move some models to management app
 
