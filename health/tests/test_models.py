@@ -461,6 +461,9 @@ class CertificationDocumentTest(TestCase):
 
     def test_description_test_check(self):
         self.assertEqual(self.certification_document.description, 'description_test')
+    
+    def test_institution_relationship(self):
+        self.assertEqual(self.certification.institution.id, 1)
 
 
 class OperationShiftTest(TestCase):
