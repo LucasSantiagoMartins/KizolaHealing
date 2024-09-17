@@ -419,6 +419,9 @@ class CertificationTest(TestCase):
         self.assertTrue(os.path.exists(image_path))
         
         FileMock.delete(image_path)
+    
+    def test_institution_relationship(self):
+        self.assertEqual(self.certification.institution.id, 1)
 
 class CertificationDocumentTest(TestCase):
     def setUp(self):
