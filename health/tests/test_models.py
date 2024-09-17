@@ -351,6 +351,7 @@ class LicenseDocumentTest(TestCase):
 
 class CertificationTest(TestCase):
     def setUp(self):
+        self.institution = MockInstitution.create()
         self.fields = {
             'certification_title': 'CCI',
             'certification_number': '12345678910',
@@ -360,7 +361,8 @@ class CertificationTest(TestCase):
             'issuing_authority': 'issuing_authority_test',
             'renewal_required': True,
             'renewal_date': '2022-10-20',
-            'scope': 'scope_test'
+            'scope': 'scope_test',
+            'institution': self.institution
         }
         
         self.certification = Certification.objects.create(**self.fields)
