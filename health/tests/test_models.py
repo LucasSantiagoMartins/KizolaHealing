@@ -310,6 +310,8 @@ class LicenseTest(TestCase):
 
 class LicenseDocumentTest(TestCase):
     def setUp(self):
+        self.institution = MockInstitution.create()
+
         image_mock = FileMock.create()
 
         self.related_license = License.objects.create(
@@ -321,7 +323,8 @@ class LicenseDocumentTest(TestCase):
             issuing_authority = 'issuing_authority_test',
             renewal_required = True,
             renewal_date = '2003-02-20',
-            scope = 'scope_test'
+            scope = 'scope_test',
+            institution = self.institution
         )
 
         self.license_document = LicenseDocument.objects.create(
@@ -341,6 +344,8 @@ class LicenseDocumentTest(TestCase):
 
     def test_description_check(self):
         self.assertEqual(self.license_document.description, 'description_test')
+    
+    
 
 class CertificationTest(TestCase):
     def setUp(self):
