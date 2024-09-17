@@ -345,6 +345,8 @@ class LicenseDocumentTest(TestCase):
     def test_description_check(self):
         self.assertEqual(self.license_document.description, 'description_test')
     
+    def test_institution_realtionship(self):
+        self.assertEqual(self.related_license.institution.id, 1)
     
 
 class CertificationTest(TestCase):
