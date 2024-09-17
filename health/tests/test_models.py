@@ -223,6 +223,9 @@ class PolicyInformationTest(TestCase):
     
     def test_last_review_date_check(self):
         self.assertEqual(self.policy_information.last_review_date, '2005-03-20')
+
+    def test_institution_relationship(self):
+        self.assertEqual(self.policy_information.institution.id, 1)
     
     def test_document_check(self):
     
@@ -240,203 +243,203 @@ class PolicyInformationTest(TestCase):
         FileMock.delete(image_path)
 
 
-# class LicenseTest(TestCase):
-#     def setUp(self):
+class LicenseTest(TestCase):
+    def setUp(self):
         
-#         image_mock = FileMock.create()
+        image_mock = FileMock.create()
     
-#         self.license = License.objects.create(
-#             license_title = 'LCF',
-#             license_number = '12345678910',
-#             license_status = 'ATV',
-#             issue_date = '2000-03-20',
-#             expiration_date = '2005-03-10',
-#             issuing_authority = 'issuing_authority_test',
-#             renewal_required = True,
-#             renewal_date = '2003-02-20',
-#             scope = 'scope_test'
-#         )
+        self.license = License.objects.create(
+            license_title = 'LCF',
+            license_number = '12345678910',
+            license_status = 'ATV',
+            issue_date = '2000-03-20',
+            expiration_date = '2005-03-10',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2003-02-20',
+            scope = 'scope_test'
+        )
         
-#         self.license_document = LicenseDocument.objects.create(
-#             related_license = self.license,
-#             file = image_mock,
-#             description = 'description_test'
-#         )
+        self.license_document = LicenseDocument.objects.create(
+            related_license = self.license,
+            file = image_mock,
+            description = 'description_test'
+        )
 
-#     def test_reverse_relationship_with_license_document(self):
-#         self.assertEqual(self.license.documents.all().count(), 1)
+    def test_reverse_relationship_with_license_document(self):
+        self.assertEqual(self.license.documents.all().count(), 1)
     
-#     def test_license_title_check(self):
-#         self.assertEqual(self.license.license_title, 'LCF')
+    def test_license_title_check(self):
+        self.assertEqual(self.license.license_title, 'LCF')
     
-#     def test_license_number_check(self):
-#         self.assertEqual(self.license.license_number, '12345678910')
+    def test_license_number_check(self):
+        self.assertEqual(self.license.license_number, '12345678910')
     
-#     def test_license_status_check(self):
-#         self.assertEqual(self.license.license_status, 'ATV')
+    def test_license_status_check(self):
+        self.assertEqual(self.license.license_status, 'ATV')
 
-#     def test_issue_date_check(self):
-#         self.assertEqual(self.license.issue_date, '2000-03-20')
+    def test_issue_date_check(self):
+        self.assertEqual(self.license.issue_date, '2000-03-20')
     
-#     def test_expiration_date_check(self):
-#         self.assertEqual(self.license.expiration_date, '2005-03-10')
+    def test_expiration_date_check(self):
+        self.assertEqual(self.license.expiration_date, '2005-03-10')
 
-#     def test_issuing_authority_check(self):
-#         self.assertEqual(self.license.issuing_authority, 'issuing_authority_test')
+    def test_issuing_authority_check(self):
+        self.assertEqual(self.license.issuing_authority, 'issuing_authority_test')
     
-#     def test_renewal_required_check(self):
-#         self.assertTrue(self.license.renewal_required)
+    def test_renewal_required_check(self):
+        self.assertTrue(self.license.renewal_required)
 
-#     def test_renewal_date_check(self):
-#         self.assertEqual(self.license.renewal_date, '2003-02-20')
+    def test_renewal_date_check(self):
+        self.assertEqual(self.license.renewal_date, '2003-02-20')
     
-#     def test_scope_check(self):
-#         self.assertEqual(self.license.scope, 'scope_test')
+    def test_scope_check(self):
+        self.assertEqual(self.license.scope, 'scope_test')
 
-#     def test_license_document_uploads_document_successfully(self):
-#         image_path = FileMock.get_file_path(self.license_document.file.name)
-#         self.assertTrue(os.path.exists(image_path))
-#         # delete test document file
-#         FileMock.delete(image_path)
+    def test_license_document_uploads_document_successfully(self):
+        image_path = FileMock.get_file_path(self.license_document.file.name)
+        self.assertTrue(os.path.exists(image_path))
+        # delete test document file
+        FileMock.delete(image_path)
 
-# class LicenseDocumentTest(TestCase):
-#     def setUp(self):
-#         image_mock = FileMock.create()
+class LicenseDocumentTest(TestCase):
+    def setUp(self):
+        image_mock = FileMock.create()
 
-#         self.related_license = License.objects.create(
-#             license_title = 'LCF',
-#             license_number = '12345678910',
-#             license_status = 'ATV',
-#             issue_date = '2000-03-20',
-#             expiration_date = '2005-03-10',
-#             issuing_authority = 'issuing_authority_test',
-#             renewal_required = True,
-#             renewal_date = '2003-02-20',
-#             scope = 'scope_test'
-#         )
+        self.related_license = License.objects.create(
+            license_title = 'LCF',
+            license_number = '12345678910',
+            license_status = 'ATV',
+            issue_date = '2000-03-20',
+            expiration_date = '2005-03-10',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2003-02-20',
+            scope = 'scope_test'
+        )
 
-#         self.license_document = LicenseDocument.objects.create(
-#             related_license = self.related_license,
-#             file = image_mock,
-#             description = 'description_test'
-#         )
+        self.license_document = LicenseDocument.objects.create(
+            related_license = self.related_license,
+            file = image_mock,
+            description = 'description_test'
+        )
     
-#     def test_license_document_license_relationship(self):
-#         self.assertEqual(self.license_document.related_license.license_title, 'LCF')
+    def test_license_document_license_relationship(self):
+        self.assertEqual(self.license_document.related_license.license_title, 'LCF')
 
-#     def test_license_document_uploads_document_successfully(self):
-#         image_path = FileMock.get_file_path(self.license_document.file.name)
-#         self.assertTrue(os.path.exists(image_path))
-#         # delete test document file
-#         FileMock.delete(image_path)
+    def test_license_document_uploads_document_successfully(self):
+        image_path = FileMock.get_file_path(self.license_document.file.name)
+        self.assertTrue(os.path.exists(image_path))
+        # delete test document file
+        FileMock.delete(image_path)
 
-#     def test_description_check(self):
-#         self.assertEqual(self.license_document.description, 'description_test')
+    def test_description_check(self):
+        self.assertEqual(self.license_document.description, 'description_test')
 
-# class CertificationTest(TestCase):
-#     def setUp(self):
-#         self.fields = {
-#             'certification_title': 'CCI',
-#             'certification_number': '12345678910',
-#             'certification_status': 'ATV',
-#             'issue_date': '2020-10-20',
-#             'expiration_date': '2023-10-20',
-#             'issuing_authority': 'issuing_authority_test',
-#             'renewal_required': True,
-#             'renewal_date': '2022-10-20',
-#             'scope': 'scope_test'
-#         }
+class CertificationTest(TestCase):
+    def setUp(self):
+        self.fields = {
+            'certification_title': 'CCI',
+            'certification_number': '12345678910',
+            'certification_status': 'ATV',
+            'issue_date': '2020-10-20',
+            'expiration_date': '2023-10-20',
+            'issuing_authority': 'issuing_authority_test',
+            'renewal_required': True,
+            'renewal_date': '2022-10-20',
+            'scope': 'scope_test'
+        }
         
-#         self.certification = Certification.objects.create(**self.fields)
+        self.certification = Certification.objects.create(**self.fields)
 
         
-#         image_mock = FileMock.create()
+        image_mock = FileMock.create()
 
-#         self.certification_document = CertificationDocument.objects.create(
-#             related_certification = self.certification,
-#             file = image_mock,
-#             description = 'description_test'
-#         )
+        self.certification_document = CertificationDocument.objects.create(
+            related_certification = self.certification,
+            file = image_mock,
+            description = 'description_test'
+        )
 
-#     def test_reverse_relationship_with_certification_document(self):
-#         self.assertEqual(self.certification.documents.all().count(), 1)
+    def test_reverse_relationship_with_certification_document(self):
+        self.assertEqual(self.certification.documents.all().count(), 1)
 
-#     def test_certification_title_check(self):
-#         self.assertEqual(self.certification.certification_title, 'CCI')
+    def test_certification_title_check(self):
+        self.assertEqual(self.certification.certification_title, 'CCI')
 
-#     def test_certification_number_check(self):
-#         self.assertEqual(self.certification.certification_number, '12345678910')
+    def test_certification_number_check(self):
+        self.assertEqual(self.certification.certification_number, '12345678910')
         
-#         with self.assertRaises(IntegrityError):
-#             # create certification with the same certification_number
-#             Certification.objects.create(**self.fields)
+        with self.assertRaises(IntegrityError):
+            # create certification with the same certification_number
+            Certification.objects.create(**self.fields)
 
-#     def test_certification_status_check(self):
-#         self.assertEqual(self.certification.certification_status, 'ATV')
+    def test_certification_status_check(self):
+        self.assertEqual(self.certification.certification_status, 'ATV')
     
-#     def test_issue_date_check(self):
-#         self.assertEqual(self.certification.issue_date, '2020-10-20')
+    def test_issue_date_check(self):
+        self.assertEqual(self.certification.issue_date, '2020-10-20')
 
-#     def test_expiration_date_check(self):
-#         self.assertEqual(self.certification.expiration_date, '2023-10-20')
+    def test_expiration_date_check(self):
+        self.assertEqual(self.certification.expiration_date, '2023-10-20')
 
-#     def test_issuing_authority_check(self):
-#         self.assertEqual(self.certification.issuing_authority, 'issuing_authority_test')
+    def test_issuing_authority_check(self):
+        self.assertEqual(self.certification.issuing_authority, 'issuing_authority_test')
     
-#     def test_renewal_required_check(self):
-#         self.assertTrue(self.certification.renewal_required)
+    def test_renewal_required_check(self):
+        self.assertTrue(self.certification.renewal_required)
         
-#     def test_renewal_date_check(self):
-#         self.assertEqual(self.certification.renewal_date, '2022-10-20')
+    def test_renewal_date_check(self):
+        self.assertEqual(self.certification.renewal_date, '2022-10-20')
     
-#     def test_renewal_date_check(self):
-#         self.assertEqual(self.certification.renewal_date, '2022-10-20')
+    def test_renewal_date_check(self):
+        self.assertEqual(self.certification.renewal_date, '2022-10-20')
     
-#     def test_scope_check(self):
-#         self.assertEqual(self.certification.scope, 'scope_test')
+    def test_scope_check(self):
+        self.assertEqual(self.certification.scope, 'scope_test')
     
-#     def test_certification_document_uploads_document_successfully(self):
-#         image_path = FileMock.get_file_path(self.certification_document.file.name)
+    def test_certification_document_uploads_document_successfully(self):
+        image_path = FileMock.get_file_path(self.certification_document.file.name)
 
-#         self.assertTrue(os.path.exists(image_path))
+        self.assertTrue(os.path.exists(image_path))
         
-#         FileMock.delete(image_path)
+        FileMock.delete(image_path)
 
-# class CertificationDocumentTest(TestCase):
-#     def setUp(self):
-#         self.certification = Certification.objects.create(
-#             certification_title = 'CCI',
-#             certification_number = '12345678910',
-#             certification_status = 'ATV',
-#             issue_date = '2020-10-20',
-#             expiration_date = '2023-10-20',
-#             issuing_authority = 'issuing_authority_test',
-#             renewal_required = True,
-#             renewal_date = '2022-10-20',
-#             scope = 'scope_test'
-#         )
+class CertificationDocumentTest(TestCase):
+    def setUp(self):
+        self.certification = Certification.objects.create(
+            certification_title = 'CCI',
+            certification_number = '12345678910',
+            certification_status = 'ATV',
+            issue_date = '2020-10-20',
+            expiration_date = '2023-10-20',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2022-10-20',
+            scope = 'scope_test'
+        )
 
-#         image_mock = FileMock.create()
+        image_mock = FileMock.create()
 
-#         self.certification_document = CertificationDocument.objects.create(
-#             related_certification = self.certification,
-#             file = image_mock,
-#             description = 'description_test'
-#         )
+        self.certification_document = CertificationDocument.objects.create(
+            related_certification = self.certification,
+            file = image_mock,
+            description = 'description_test'
+        )
 
-#     def test_relationship_with_certification_document(self):
-#         self.assertEqual(self.certification_document.related_certification.certification_title, 'CCI')
+    def test_relationship_with_certification_document(self):
+        self.assertEqual(self.certification_document.related_certification.certification_title, 'CCI')
 
-#     def test_certification_document_uploads_document_successfully(self):
-#         image_path = FileMock.get_file_path(self.certification_document.file.name)
+    def test_certification_document_uploads_document_successfully(self):
+        image_path = FileMock.get_file_path(self.certification_document.file.name)
 
-#         self.assertTrue(os.path.exists(image_path))
+        self.assertTrue(os.path.exists(image_path))
         
-#         # delete test document file
-#         os.remove(image_path)
+        # delete test document file
+        os.remove(image_path)
 
-#     def test_description_test_check(self):
-#         self.assertEqual(self.certification_document.description, 'description_test')
+    def test_description_test_check(self):
+        self.assertEqual(self.certification_document.description, 'description_test')
 
 
 class OperationShiftTest(TestCase):
