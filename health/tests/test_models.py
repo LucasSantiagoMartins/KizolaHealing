@@ -425,6 +425,8 @@ class CertificationTest(TestCase):
 
 class CertificationDocumentTest(TestCase):
     def setUp(self):
+        self.institution = MockInstitution.create()
+
         self.certification = Certification.objects.create(
             certification_title = 'CCI',
             certification_number = '12345678910',
@@ -434,7 +436,8 @@ class CertificationDocumentTest(TestCase):
             issuing_authority = 'issuing_authority_test',
             renewal_required = True,
             renewal_date = '2022-10-20',
-            scope = 'scope_test'
+            scope = 'scope_test',
+            institution = self.institution
         )
 
         image_mock = FileMock.create()
