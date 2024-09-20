@@ -16,7 +16,8 @@ from health.forms import (
     PhoneForm,
 )
 from health.models import (
-    AdministrativeInformation
+    AdministrativeInformation,
+    InstitutionalInformation
 )
 
 class AdministrativeInformationFormTest(TestCase):
@@ -77,3 +78,68 @@ class AdministrativeInformationFormTest(TestCase):
 
         self.assertEqual(updated_admn_information.responsible_person_name, 'John Smith')
         self.assertEqual(updated_admn_information.responsible_person_email, 'johnsmith@gmail.com')
+
+
+class InstitutionalInformationFormTest(TestCase):
+
+    def test_institutional_information_form_valid_data(self):
+        form = InstitutionalInformationForm(data={
+            'institution_name': 'Hospital-test',
+            # This nif is random
+            'nif': '5401137796',
+            'institution_type': 'HPG',
+            'founding_date': '2010-02-19'
+            
+        })
+
+        self.assertTrue(form.is_valid())
+
+        institutional_information = form.save()
+
+        self.assertEqual(institutional_information.institution_name, 'Hospital-test')
+        self.assertEqual(institutional_information.nif, '5401137796')
+        self.assertEqual(institutional_information.institution_type, 'HPG')
+        self.assertEqual(institutional_information.founding_date.strftime('%Y-%m-%d'), '2010-02-19')
+    
+    def test_institutional_information_form_invalid_data(self):
+
+        form = InstitutionalInformationForm(data={
+            'institution_name': '',
+            # This nif is random
+            'nif': '',
+            'institution_type': 'ddd',
+            'founding_date': '2010-03/20'
+            
+        })
+
+        self.assertFalse(form.is_valid())
+
+        self.assertIn('institution_name', form.errors)
+        self.assertIn('nif', form.errors)
+        self.assertIn('institution_type', form.errors)
+        self.assertIn('founding_date', form.errors)
+
+    def test_institutional_information_form_partial_update(self):
+
+        institutional_information = InstitutionalInformation.objects.create(
+            institution_name = 'Hospital-test',
+            # This nif is random
+            nif = '5401137796',
+            institution_type = 'HPG',
+            founding_date = '2010-02-19'
+        )
+
+        form = InstitutionalInformationForm(data={
+            'institution_name': 'Hospital-test2',
+            # This nif is random
+            'nif': '5401137796',
+            'institution_type': 'HPG',
+            'founding_date': '2010-02-19'
+            
+        }, instance=institutional_information)
+    
+        self.assertTrue(form.is_valid())
+
+        updated_institutional_information = form.save()
+
+        self.assertEqual(updated_institutional_information.institution_name, 'Hospital-test2')
