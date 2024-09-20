@@ -83,7 +83,7 @@ class ServiceOffered(models.Model):
 
     def __str__(self):
         return self.service_name
-        
+
 class PolicyInformation(models.Model):
     title = models.CharField(max_length=3, choices=POLICY_TITLE_CHOICES)
     description = models.TextField()
@@ -102,7 +102,8 @@ class OperationInformation(models.Model):
     # related_name='duty_shifts' from DutyShift model
     # related_name='operating_hours', from OperatingHour model
 
-   
+    def __str__(self):
+        return self.services_offered.all()
 
 class License(models.Model):
     license_title = models.CharField(max_length=3, choices=LICENSE_TITLE_CHOICES)
