@@ -13,6 +13,7 @@ from .model_choices import (
     OPERATING_HOURS_CHOICES
 )
 from .utils import get_readable_form_of_choice
+from . import model_validators
 
 class Institution(models.Model):
     institutional_informations = models.OneToOneField('InstitutionalInformation', on_delete=models.PROTECT)
@@ -72,7 +73,7 @@ class AdministrativeInformation(models.Model):
     responsible_person_name = models.CharField(max_length=50)
     responsible_person_nif = models.CharField(max_length=14)
     responsible_person_email = models.EmailField(max_length=150)
-    responsible_person_phone = models.CharField(max_length=13)
+    responsible_person_phone = models.CharField(max_length=13, validators=[model_validators.phone_number_validator])
 
     def __str__(self):
         return self.responsible_person_name
