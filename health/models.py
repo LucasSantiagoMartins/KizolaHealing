@@ -74,6 +74,8 @@ class AdministrativeInformation(models.Model):
     responsible_person_email = models.EmailField(max_length=150)
     responsible_person_phone = models.CharField(max_length=13)
 
+    def __str__(self):
+        return self.responsible_person_name
 
 class ServiceOffered(models.Model):
     service_name = models.CharField(max_length=3, choices=SERVICE_TYPE_CHOICES)
