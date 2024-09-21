@@ -158,7 +158,7 @@ class CertificationDocument(models.Model):
 
 
     def __str__(self):
-        return f"{self.certification.certification_title}"
+        return f"{self.related_certification.certification_title}"
 
 class OperatingShift(models.Model):
     shift_type = models.CharField(max_length=3, choices=SHIFT_TYPE_CHOICES)
