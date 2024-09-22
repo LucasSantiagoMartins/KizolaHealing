@@ -10,7 +10,6 @@ from health.models import (
     OperatingShift,
     Certification,
     OperatingHour,
-    Institution,
     DutyShift,
     Address,
     License,
