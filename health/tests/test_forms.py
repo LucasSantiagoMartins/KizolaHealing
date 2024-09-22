@@ -23,7 +23,6 @@ from health.models import (
 from .mock_institution import MockInstitution
 from .file_handler import FileMock
 from django.test import TestCase
-import os
 
 
 class AdministrativeInformationFormTest(TestCase):
@@ -170,7 +169,7 @@ class CertificationDocumentFormTest(TestCase):
             scope = 'scope_test',
             institution = institution
         )
-        
+
         self.file_mock = FileMock.create()
 
     def test_certification_document_form_valid_data(self):
