@@ -1,4 +1,3 @@
-from django.test import TestCase
 from health.forms import (
     AdministrativeInformationForm,
     InstitutionalInformationForm,
@@ -17,8 +16,15 @@ from health.forms import (
 )
 from health.models import (
     AdministrativeInformation,
-    InstitutionalInformation
+    InstitutionalInformation,
+    CertificationDocument,
+    Certification
 )
+from .mock_institution import MockInstitution
+from .file_handler import FileMock
+from django.test import TestCase
+import os
+
 
 class AdministrativeInformationFormTest(TestCase):
 
@@ -83,6 +89,7 @@ class AdministrativeInformationFormTest(TestCase):
 class InstitutionalInformationFormTest(TestCase):
 
     def test_institutional_information_form_valid_data(self):
+        
         form = InstitutionalInformationForm(data={
             'institution_name': 'Hospital-test',
             # This nif is random
@@ -143,3 +150,82 @@ class InstitutionalInformationFormTest(TestCase):
         updated_institutional_information = form.save()
 
         self.assertEqual(updated_institutional_information.institution_name, 'Hospital-test2')
+
+
+class CertificationDocumentFormTest(TestCase):
+
+    def setUp(self):
+
+        institution = MockInstitution.create()
+
+        self.related_certification = Certification.objects.create(
+            certification_title = 'CCI',
+            certification_number = '12345678910',
+            certification_status = 'ATV',
+            issue_date = '2020-10-20',
+            expiration_date = '2023-10-20',
+            issuing_authority = 'issuing_authority_test',
+            renewal_required = True,
+            renewal_date = '2022-10-20',
+            scope = 'scope_test',
+            institution = institution
+        )
+        
+        self.file_mock = FileMock.create()
+
+    def test_certification_document_form_valid_data(self):
+
+        form = CertificationDocumentForm(data={
+            'description': 'description_test',
+            'related_certification': self.related_certification
+        }, files={'file': self.file_mock})
+
+        self.assertTrue(form.is_valid())
+
+        certification_document = form.save(commit=False)
+        certification_document.related_certification = self.related_certification
+        certification_document.save()
+
+        self.assertEqual(certification_document.description, 'description_test')
+        
+        file_path = FileMock.get_file_path(certification_document.file.name)
+        FileMock.delete(file_path)
+    
+    def test_certification_document_form_invalid_data(self):
+
+        form = CertificationDocumentForm(data={
+            'description': '',
+        }, files={'file': ''})
+
+        self.assertFalse(form.is_valid())
+
+        # description is optional field
+        self.assertNotIn('description', form.errors)
+        self.assertIn('file', form.errors)
+
+    def test_certification_document_form_partial_update(self):
+
+        certification_document = CertificationDocument.objects.create(
+            file = self.file_mock,
+            description = 'description_test',
+            related_certification = self.related_certification
+        )
+
+        file_path = FileMock.get_file_path(certification_document.file.name)
+        FileMock.delete(file_path)
+
+        new_file_mock = FileMock.create()       
+    
+        form = CertificationDocumentForm(data={
+            'description': 'description_test2',
+        }, files={'file': new_file_mock}, instance=certification_document)
+    
+        self.assertTrue(form.is_valid())
+
+        updated_certification_document = form.save()
+
+        self.assertEqual(updated_certification_document.description, 'description_test2')
+        self.assertEqual(certification_document.file.name, updated_certification_document.file.name)
+
+        updated_file_path = FileMock.get_file_path(updated_certification_document.file.name)
+        FileMock.delete(updated_file_path)
