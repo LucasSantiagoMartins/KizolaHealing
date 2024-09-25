@@ -316,11 +316,10 @@ class LicenseTest(TestCase):
     def test_institution_realtionship(self):
         self.assertEqual(self.license.institution.id, 1)
 
+
 class LicenseDocumentTest(TestCase):
     def setUp(self):
         self.institution = MockInstitution.create()
-
-        image_mock = FileMock.create()
 
         self.related_license = License.objects.create(
             license_title = 'LCF',
@@ -335,23 +334,45 @@ class LicenseDocumentTest(TestCase):
             institution = self.institution
         )
 
-        self.license_document = LicenseDocument.objects.create(
-            related_license = self.related_license,
-            file = image_mock,
-            description = 'description_test'
-        )
+        self.license_document_fields = {
+            'related_license': self.related_license,
+            'description': 'description_test'
+        }
     
     def test_license_document_license_relationship(self):
+        image_mock = FileMock.create()
+        self.license_document_fields['file'] = image_mock
+        self.license_document = LicenseDocument.objects.create(**self.license_document_fields)
+
         self.assertEqual(self.license_document.related_license.license_title, 'LCF')
 
-    def test_license_document_uploads_document_successfully(self):
         image_path = FileMock.get_file_path(self.license_document.file.name)
+        # delete test document file
+        FileMock.delete(image_path)
+
+    def test_license_document_uploads_document_successfully(self):
+        image_mock = FileMock.create()
+        self.license_document_fields['file'] = image_mock
+        self.license_document = LicenseDocument.objects.create(**self.license_document_fields)
+
+        image_path = FileMock.get_file_path(self.license_document.file.name)
+
         self.assertTrue(os.path.exists(image_path))
+
         # delete test document file
         FileMock.delete(image_path)
 
     def test_description_check(self):
+        image_mock = FileMock.create()
+        self.license_document_fields['file'] = image_mock
+        self.license_document = LicenseDocument.objects.create(**self.license_document_fields)
+        
+        image_path = FileMock.get_file_path(self.license_document.file.name)
+
         self.assertEqual(self.license_document.description, 'description_test')
+
+        # delete test document file
+        FileMock.delete(image_path)
     
     def test_institution_realtionship(self):
         self.assertEqual(self.related_license.institution.id, 1)
