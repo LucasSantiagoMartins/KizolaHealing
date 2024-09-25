@@ -226,7 +226,7 @@ class PolicyInformationTest(TestCase):
     def test_institution_relationship(self):
         self.assertEqual(self.policy_information.institution.id, 1)
     
-    def test_document_check(self):
+    def test_uploads_document_successfully(self):
     
         image_mock = FileMock.create()
 
