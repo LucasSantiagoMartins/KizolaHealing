@@ -17,7 +17,7 @@ from health.models import (
 )
 from .mock_institution import MockInstitution 
 from django.db import IntegrityError
-from .file_handler import FileMock
+from .file_handler import FileMock, TestWithFileMock
 from django.test import TestCase
 import os
 
@@ -266,15 +266,9 @@ class LicenseTest(TestCase):
         }
 
     def test_reverse_relationship_with_license_document(self):
-        image_mock = FileMock.create()
-        self.license_document_fields['file'] = image_mock
-        self.license_document = LicenseDocument.objects.create(**self.license_document_fields)
-
+        license_document = TestWithFileMock.create_object(LicenseDocument, self.license_document_fields, 'file')
         self.assertEqual(self.license.documents.all().count(), 1)
-
-        image_path = FileMock.get_file_path(self.license_document.file.name)
-        # delete test document file
-        FileMock.delete(image_path)
+        TestWithFileMock.delete_uploaded_file_mock(license_document.file.name)
 
     def test_license_title_check(self):
         self.assertEqual(self.license.license_title, 'LCF')
@@ -312,6 +306,7 @@ class LicenseTest(TestCase):
         self.assertTrue(os.path.exists(image_path))
         # delete test document file
         FileMock.delete(image_path)
+
     
     def test_institution_realtionship(self):
         self.assertEqual(self.license.institution.id, 1)
