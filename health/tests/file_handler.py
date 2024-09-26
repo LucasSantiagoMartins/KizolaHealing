@@ -42,4 +42,41 @@ class FileMock:
     @staticmethod
     def delete(file_path):
         os.remove(file_path)
+
+
+class TestWithFileMock:
+    """
+        Example:
+            -> 
+                class Profile(models.Model):
+                    name = ...
+                    last_name = ...
+                    profile_picture = ...
+
+                # how to test this model using TestWithFileMock
+
+                class YourTestCase(TestCase):
+                    def setUp(self):
+                        # define your model's fields variable here except the file field
+                        self.profile_fields = {'name': 'john' 'last_name': 'doe'}
+                    
+                    def your_test_that_use_file_mock(self):
+                        profile = TestWithFileMock.create_object(Profile, self.profile_fields, 'profile_picture')
+                        # test here using the created object
+                        TestWithFileMock.delete_uploaded_file_mock(profile.profile_picture.name)
+            ->
+    """
+
+    @staticmethod
+    def create_object(model, model_fields, file_field_name):
+        image_mock = FileMock.create()
+        model_fields[file_field_name] = image_mock
+        obj = model.objects.create(**model_fields)
         
+        return obj
+    
+    @staticmethod
+    def delete_uploaded_file_mock(uploaded_file_mock_name):
+        image_path = FileMock.get_file_path(uploaded_file_mock_name)
+        # delete test document file
+        FileMock.delete(image_path)
