@@ -335,16 +335,10 @@ class LicenseDocumentTest(TestCase):
         TestWithFileMock.delete_uploaded_file_mock(license_document.file.name)
 
     def test_license_document_uploads_document_successfully(self):
-        image_mock = FileMock.create()
-        self.license_document_fields['file'] = image_mock
-        self.license_document = LicenseDocument.objects.create(**self.license_document_fields)
-
-        image_path = FileMock.get_file_path(self.license_document.file.name)
-
+        license_document = TestWithFileMock.create_object(LicenseDocument, self.license_document_fields, 'file')
+        image_path = FileMock.get_file_path(license_document.file.name)
         self.assertTrue(os.path.exists(image_path))
-
-        # delete test document file
-        FileMock.delete(image_path)
+        TestWithFileMock.delete_uploaded_file_mock(license_document.file.name)
 
     def test_description_check(self):
         image_mock = FileMock.create()
