@@ -351,6 +351,7 @@ class LicenseDocumentTest(TestCase):
 
 class CertificationTest(TestCase):
     def setUp(self):
+
         self.institution = MockInstitution.create()
         self.fields = {
             'certification_title': 'CCI',
@@ -364,20 +365,22 @@ class CertificationTest(TestCase):
             'scope': 'scope_test',
             'institution': self.institution
         }
-        
         self.certification = Certification.objects.create(**self.fields)
 
-        
-        image_mock = FileMock.create()
-
-        self.certification_document = CertificationDocument.objects.create(
-            related_certification = self.certification,
-            file = image_mock,
-            description = 'description_test'
-        )
+        self.certification_document_fields = {
+            'related_certification': self.certification,
+            'description': 'description_test'
+        }
 
     def test_reverse_relationship_with_certification_document(self):
+        certification_document = TestWithFileMock.create_object(
+            CertificationDocument, 
+            self.certification_document_fields,
+            'file'
+        )
+
         self.assertEqual(self.certification.documents.all().count(), 1)
+        TestWithFileMock.delete_uploaded_file_mock(certification_document.file.name)
 
     def test_certification_title_check(self):
         self.assertEqual(self.certification.certification_title, 'CCI')
@@ -414,11 +417,14 @@ class CertificationTest(TestCase):
         self.assertEqual(self.certification.scope, 'scope_test')
     
     def test_certification_document_uploads_document_successfully(self):
-        image_path = FileMock.get_file_path(self.certification_document.file.name)
+        certification_document = TestWithFileMock.create_object(
+            CertificationDocument, 
+            self.certification_document_fields,
+            'file'
+        )
 
-        self.assertTrue(os.path.exists(image_path))
-        
-        FileMock.delete(image_path)
+        self.assertTrue(os.path.exists(FileMock.get_file_path(certification_document.file.name)))
+        TestWithFileMock.delete_uploaded_file_mock(certification_document.file.name)
     
     def test_institution_relationship(self):
         self.assertEqual(self.certification.institution.id, 1)
