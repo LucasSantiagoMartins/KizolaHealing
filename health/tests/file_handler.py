@@ -43,7 +43,7 @@ class FileMock:
     def delete(file_path):
         os.remove(file_path)
 
-
+# TODO rename this class name
 class TestWithFileMock:
     """
         Example:
