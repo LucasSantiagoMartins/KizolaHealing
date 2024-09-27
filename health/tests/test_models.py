@@ -446,27 +446,38 @@ class CertificationDocumentTest(TestCase):
             institution = self.institution
         )
 
-        image_mock = FileMock.create()
-
-        self.certification_document = CertificationDocument.objects.create(
-            related_certification = self.certification,
-            file = image_mock,
-            description = 'description_test'
-        )
+        self.certification_document_fields = {
+            'related_certification': self.certification,
+            'description': 'description_test'
+        }
 
     def test_relationship_with_certification_document(self):
-        self.assertEqual(self.certification_document.related_certification.certification_title, 'CCI')
+        certification_document = TestWithFileMock.create_object(
+            CertificationDocument, 
+            self.certification_document_fields,
+            'file'
+        )
+        TestWithFileMock.delete_uploaded_file_mock(certification_document.file.name)
+        self.assertEqual(certification_document.related_certification.certification_title, 'CCI')
 
     def test_certification_document_uploads_document_successfully(self):
-        image_path = FileMock.get_file_path(self.certification_document.file.name)
+        certification_document = TestWithFileMock.create_object(
+            CertificationDocument, 
+            self.certification_document_fields,
+            'file'
+        )
 
-        self.assertTrue(os.path.exists(image_path))
-        
-        # delete test document file
-        os.remove(image_path)
+        self.assertTrue(os.path.exists(FileMock.get_file_path(certification_document.file.name)))
+        TestWithFileMock.delete_uploaded_file_mock(certification_document.file.name)
 
     def test_description_test_check(self):
-        self.assertEqual(self.certification_document.description, 'description_test')
+        certification_document = TestWithFileMock.create_object(
+            CertificationDocument, 
+            self.certification_document_fields,
+            'file'
+        )
+        TestWithFileMock.delete_uploaded_file_mock(certification_document.file.name)
+        self.assertEqual(certification_document.description, 'description_test')
     
     def test_institution_relationship(self):
         self.assertEqual(self.certification.institution.id, 1)
