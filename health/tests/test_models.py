@@ -126,9 +126,13 @@ class AddressTest(TestCase):
 
 class ContactInformationTest(TestCase):
     def setUp(self):
+
+        mock_institution = MockInstitution.create()
+
         self.contact_information = ContactInformation.objects.create(
             email = 'kizolahealing@test.com',
-            website = 'https://kizolahealing.com'
+            website = 'https://kizolahealing.com',
+            related_institution = mock_institution
         )
 
     def test_email_check(self):
@@ -145,9 +149,13 @@ class ContactInformationTest(TestCase):
         
 class PhoneTest(TestCase):
     def setUp(self):
+
+        mock_institution = MockInstitution.create()
+
         self.contact_information = ContactInformation.objects.create(
             email = 'kizolahealing@test.com',
-            website = 'https://kizolahealing.com'
+            website = 'https://kizolahealing.com',
+            related_institution = mock_institution
         )
 
         self.phone = Phone.objects.create(
