@@ -63,6 +63,7 @@ class Phone(models.Model):
 class ContactInformation(models.Model):
     email = models.EmailField(max_length=150)
     website = models.URLField()
+    related_institution = models.OneToOneField(Institution, related_name='contact_informations', on_delete=models.DO_NOTHING)
     # related_name='phone_numbers' from Phone model
 
     def __str__(self):
