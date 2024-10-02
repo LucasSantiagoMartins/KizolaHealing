@@ -146,6 +146,9 @@ class ContactInformationTest(TestCase):
             self.contact_information.website,
             'https://kizolahealing.com'
         )
+
+    def test_institution_relationship(self):
+        self.assertEqual(self.contact_information.related_institution.id, 1)
         
 class PhoneTest(TestCase):
     def setUp(self):
